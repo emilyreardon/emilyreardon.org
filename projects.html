@@ -413,20 +413,6 @@
     /* ── PERSONAL ── */
 
     {
-      id:          "PER_000",
-      type:        "personal",
-      title:       "Scituate Harbor Perimeter: Ecoacoustic Study",
-      year:        "2026",
-      tools:       "iPhone Voice Memo & Camera, Audacity, sun printing, OpenStreetMap.org, After Effects",
-      rationale:   "This ecoacoustic piece is made from a heart-shaped harbor in southeastern Massachusetts, viewable from my window. My family has lived by it for generations; my mom's memorial was held at the town marina on its edge, her ashes returned to tide. This work explores relationships between place, people, memory, and belonging. It considers how landscapes hold personal histories, grief, ritual, and everyday life all at once.",
-      description: "A four-minute, one-second, and twenty-two-hundredths-of-a-second ambient audiovisual composition centered on Scituate Harbor, Massachusetts. The runtime corresponds to the date my mom's ashes entered the harbor tide. This shifting audio portrait is a meditation on tidal movement, return, and the overlapping of memory.",
-      role:        "Entire project.",
-      videoPaths:  ["images/personal/Emily Reardon_Scituate Harbor Ecoacoustic Study.mp4"],
-      imagePaths:  null,
-      gifPaths:    null
-    },
-
-    {
       id:          "PER_001",
       type:        "personal",
       title:       "Ethical AI: Intimacy as Infrastructure",
@@ -437,6 +423,21 @@
       role:        "Entire project.",
       videoPaths:  null,
       imagePaths:  ["images/personal/EmilyReardon_AIAsIntimacy", "images/personal/EmilyReardon_AIAsIntimacyProcess"],
+      gifPaths:    null
+    },
+
+    {
+      id:          "PER_000",
+      type:        "personal",
+      title:       "Scituate Harbor Perimeter: Ecoacoustic Study",
+      year:        "2026",
+      tools:       "iPhone Voice Memo & Camera, Audacity, sun printing, OpenStreetMap.org, After Effects",
+      rationale:   "This ecoacoustic piece is made from a heart-shaped harbor in southeastern Massachusetts, viewable from my window. My family has lived by it for generations; my mom's memorial was held at the town marina on its edge, her ashes returned to tide. This work explores relationships between place, people, memory, and belonging. It considers how landscapes hold personal histories, grief, ritual, and everyday life all at once.",
+      description: "A four-minute, one-second, and twenty-two-hundredths-of-a-second ambient audiovisual composition centered on Scituate Harbor, Massachusetts. The runtime corresponds to the date my mom's ashes entered the harbor tide. This shifting audio portrait is a meditation on tidal movement, return, and the overlapping of memory.",
+      role:        "Entire project.",
+      videoPaths:  ["images/personal/Emily Reardon_Scituate Harbor Ecoacoustic Study.mp4"],
+      thumbnailGif: "images/personal/thumbnail_ecoacoustic.png",
+      imagePaths:  null,
       gifPaths:    null
     },
 
@@ -582,18 +583,20 @@
 
 
   /* ── Build a video wrap ── */
-  function buildVideoWrap(src, altText) {
+  function buildVideoWrap(src, altText, thumbnailGif) {
     const wrap = document.createElement('div');
     wrap.className = 'project-image-wrap';
+
     const video = document.createElement('video');
     video.controls = true;
     video.preload = 'metadata';
     video.playsInline = true;
-    video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;';
+    video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;cursor:pointer;';
     video.setAttribute('aria-label', altText);
-    // Set src directly — let browser handle any spaces in path
+    if (thumbnailGif) video.poster = thumbnailGif;
     video.src = src;
     wrap.appendChild(video);
+
     return wrap;
   }
 
@@ -660,15 +663,24 @@
       card.appendChild(title);
 
 
-      /* media: video OR gif grid OR one/two standard images */
+      /* Split imagePaths into main vs process */
+      const mainImagePaths = (p.imagePaths || []).filter(function(path) {
+        return path.toLowerCase().indexOf('process') === -1;
+      });
+      const processImagePaths = (p.imagePaths || []).filter(function(path) {
+        return path.toLowerCase().indexOf('process') !== -1;
+      });
+
+
+      /* media: video OR gif grid OR main (non-process) images */
       if (p.videoPaths && p.videoPaths.length) {
         p.videoPaths.forEach(function(src) {
-          card.appendChild(buildVideoWrap(src, p.title));
+          card.appendChild(buildVideoWrap(src, p.title, p.thumbnailGif || null));
         });
       } else if (p.gifPaths && p.gifPaths.length) {
         card.appendChild(buildGifGrid(p.gifPaths, p.title));
-      } else if (p.imagePaths && p.imagePaths.length) {
-        p.imagePaths.forEach(function(basePath) {
+      } else if (mainImagePaths.length) {
+        mainImagePaths.forEach(function(basePath) {
           card.appendChild(buildImageWrap(basePath, p.title));
         });
       }
@@ -681,7 +693,7 @@
       card.appendChild(byline);
 
 
-      /* body copy */
+      /* body copy: Rationale → Project Description → My Role */
       const bodyWrap = document.createElement('div');
       bodyWrap.className = 'project-body-wrap';
 
@@ -702,6 +714,23 @@
 
       bodyWrap.innerHTML = bodyHTML;
       card.appendChild(bodyWrap);
+
+
+      /* Process Documentation — images with "process" in filename, at the bottom */
+      if (processImagePaths.length) {
+        const processLabel = document.createElement('p');
+        processLabel.className = 'project-label';
+        processLabel.textContent = 'Process Documentation';
+        card.appendChild(processLabel);
+
+        processImagePaths.forEach(function(basePath) {
+          const wrap = buildImageWrap(basePath, p.title + ' process');
+          wrap.style.width = '60%';
+          card.appendChild(wrap);
+        });
+      }
+
+
       container.appendChild(card);
     });
 
