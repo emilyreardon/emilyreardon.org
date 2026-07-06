@@ -724,9 +724,7 @@
         card.appendChild(processLabel);
 
         processImagePaths.forEach(function(basePath) {
-          const wrap = buildImageWrap(basePath, p.title + ' process');
-          wrap.style.width = '60%';
-          card.appendChild(wrap);
+          card.appendChild(buildImageWrap(basePath, p.title + ' process'));
         });
       }
 
