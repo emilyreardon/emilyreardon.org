@@ -337,6 +337,24 @@
     /* Mobile */
     @media (max-width: 768px) {
       .nav-container { display: none; }
+
+      .nav-container.menu-open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: #fff;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #000;
+        z-index: 10;
+      }
+
+      .nav-container.menu-open .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
       .hamburger { display: block; }
       .brand h1 { font-size: 1.8rem; }
       body { font-size: 0.88rem; }
@@ -948,9 +966,8 @@
   const hamburger    = document.querySelector('.hamburger');
   const navContainer = document.getElementById('nav-container');
   if (hamburger && navContainer) {
-    hamburger.addEventListener('click', function() {
-      const isVisible = navContainer.style.display === 'flex';
-      navContainer.style.display = isVisible ? 'none' : 'flex';
+    hamburger.addEventListener('click', () => {
+      navContainer.classList.toggle('menu-open');
     });
   }
 </script>
