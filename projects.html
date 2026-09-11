@@ -422,11 +422,21 @@
     
 
     .footer-container {
-      font-size: 0.72rem;
+      font-size: 0.62rem;
       line-height: 1.4;
       border-top: 1px solid #000;
       padding-top: 0.3rem;
       padding-bottom: 2rem;
+    }
+
+
+    /* Video player controls — light chrome instead of default dark gradient */
+    video[controls] {
+      color-scheme: light;
+    }
+    video[controls]::-webkit-media-controls-panel {
+      background-image: none;
+      background-color: rgba(255, 255, 255, 0.85);
     }
 
 
