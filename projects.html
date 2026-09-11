@@ -1343,26 +1343,6 @@
 
   renderProjects();
 
-  (function () {
-    const hash = window.location.hash.slice(1);
-    if (!hash) return;
-    const match = projects.find(function (p) { return p.id === hash; });
-    if (!match) return;
-    document.body.classList.add('project-focus');
-    document.title = match.title + ' | Emily Reardon';
-    document.querySelectorAll('.project-card').forEach(function (card) {
-      if (card.dataset.id !== hash) card.style.display = 'none';
-    });
-    const backLink = document.createElement('a');
-    backLink.href = 'projects.html';
-    backLink.className = 'project-back-link';
-    backLink.textContent = '\u2190 All projects';
-    const main = document.getElementById('projects-list');
-    if (!main.querySelector('.project-back-link')) main.insertBefore(backLink, main.firstChild);
-    const focusBtn = document.querySelector('.project-card[data-id="' + hash + '"] .project-open-btn');
-    if (focusBtn) focusBtn.remove();
-  })();
-
   /* ── Single-project focus mode (URL hash = project id) ── */
   (function () {
     const hash = window.location.hash.slice(1);
@@ -1376,6 +1356,9 @@
     document.querySelectorAll('.project-card').forEach(function (card) {
       if (card.dataset.id !== hash) card.style.display = 'none';
     });
+
+    const focusedCard = document.querySelector('.project-card[data-id="' + hash + '"]');
+    if (focusedCard) focusedCard.style.borderTop = '1px solid #000';
 
     const backLink = document.createElement('a');
     backLink.href = 'projects.html';
