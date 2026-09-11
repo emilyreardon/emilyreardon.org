@@ -333,12 +333,6 @@
       opacity: 1;
     }
 
-    /* ── Nav letter spacing ── */
-    .nav-links a span {
-      letter-spacing: 0.06em;
-    }
-
-
     </style>
 </head>
 <body>
@@ -580,83 +574,4 @@
       });
     }
   </script>
-  <script>
-    (function() {
-      var fonts = ["'Josefin Sans', sans-serif", "'Poiret One', sans-serif", "'Fraunces', serif"];
-      var styles = ["normal", "normal", "italic"];
-      var SIZES = ['sz-sm', 'sz-md', 'sz-lg'];
-      var stored;
-      try { stored = JSON.parse(sessionStorage.getItem('emNav15')); } catch(e) {}
-      if (!stored) stored = {};
-      var changed = false;
-
-      function scheduleDot(anchor, initialDelay) {
-        var holdMs = 1800 + Math.floor(Math.random() * 1200);
-        var waitMs = 8000 + Math.floor(Math.random() * 12000);
-        function insertDot() {
-          var dot = document.createElement('span');
-          dot.className = 'period-dot ' + SIZES[Math.floor(Math.random() * SIZES.length)];
-          anchor.parentNode.insertBefore(dot, anchor.nextSibling);
-          requestAnimationFrame(function() {
-            requestAnimationFrame(function() { dot.classList.add('visible'); });
-          });
-          setTimeout(function() {
-            dot.classList.remove('visible');
-            dot.addEventListener('transitionend', function() {
-              if (dot.parentNode) dot.remove();
-              setTimeout(insertDot, waitMs);
-            }, { once: true });
-          }, holdMs);
-        }
-        setTimeout(insertDot, initialDelay || 0);
-      }
-
-      document.querySelectorAll('.nav-links a').forEach(function(el) {
-        var key = el.getAttribute('href') || el.textContent.trim();
-        var isPDF = key.indexOf('.pdf') !== -1;
-        if (!stored[key]) {
-          var text = el.textContent.trim().replace(/\.$/g, '');
-          var chars = [];
-          for (var i = 0; i < text.length; i++) chars.push(Math.floor(Math.random() * fonts.length));
-          var periods = [];
-          if (!isPDF) {
-            var numP = 2 + Math.floor(Math.random() * 2);
-            var tries = 0;
-            while (periods.length < numP && tries < 20) {
-              var pos = Math.floor(Math.random() * (text.length - 1));
-              if (periods.indexOf(pos) === -1) periods.push(pos);
-              tries++;
-            }
-          }
-          stored[key] = { chars: chars, periods: periods };
-          changed = true;
-        }
-        var word = stored[key];
-        var text = el.textContent.trim().replace(/\.$/g, '');
-        var html = '';
-        for (var i = 0; i < text.length; i++) {
-          var fi = word.chars[i % word.chars.length] % fonts.length;
-          html += '<span style="font-family:' + fonts[fi] + ';font-style:' + styles[fi] + ';font-weight:300">' + text[i] + '</span>';
-        }
-        el.innerHTML = html;
-        el.style.visibility = 'visible';
-        // lock width so inline dots don't shift sibling nav words
-        el.style.whiteSpace = 'nowrap';
-        el.style.width = el.getBoundingClientRect().width + 'px';
-        el.style.overflow = 'visible';
-        if (!isPDF && word.periods) {
-          var letterSpans = el.querySelectorAll('span');
-          var wordBase = Math.floor(Math.random() * 1500);
-          word.periods.forEach(function(pos, pidx) {
-            if (letterSpans[pos]) {
-              var delay = wordBase + pidx * (800 + Math.floor(Math.random() * 1200));
-              scheduleDot(letterSpans[pos], delay);
-            }
-          });
-        }
-      });
-      if (changed) try { sessionStorage.setItem('emNav15', JSON.stringify(stored)); } catch(e) {}
-    })();
-  </script>
-</body>
 </html>
