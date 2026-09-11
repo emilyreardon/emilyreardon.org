@@ -984,7 +984,10 @@
           });
           const sumInvRow = rowAspects.reduce(function(sum, ra) { return sum + 1 / ra; }, 0);
           rows.forEach(function(rd, ri) {
-            const rowH = availH / (rowAspects[ri] * sumInvRow);
+            /* Subtract the gap between items within this row so elements fill colW exactly */
+            const nItems = rd.elements.length;
+            const rowAvailW = colW - gapPx * (nItems - 1);
+            const rowH = rowAvailW / rowAspects[ri];
             rd.rowDiv.style.height = rowH + 'px';
             rd.elements.forEach(function(el) {
               el.style.height = rowH + 'px';
