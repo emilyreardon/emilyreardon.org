@@ -215,7 +215,16 @@
       line-height: 1.4;
       padding-top: 1.2rem;
       padding-bottom: 2rem;
+      padding-left: 0;
+      padding-right: 0;
       border-top: 1px solid #000;
+    }
+
+    /* Inner .main-content inside footer has its own padding — reset it */
+    .footer-container .main-content {
+      padding-left: 0;
+      padding-right: 0;
+      max-width: 100%;
     }
 
 
