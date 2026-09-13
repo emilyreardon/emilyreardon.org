@@ -620,7 +620,7 @@
       type:        "collaborative",
       title:       "Research for Humans",
       year:        "2026",
-      tools:       "E-waste label maker body in a recycled suitcase with recycled cape, custom 3D-printed head with Adafruit-controlled lights, e-waste iPhone screen, external keyboard. Local, open-weight AI: OLMo 3 7B from the Allen Institute, run entirely on-device via Ollama with retrieval-augmented generation over a custom corpus of all 7,463 open-access International Society of Learning Sciences (ISLS) papers. Pipeline built in collaboration with Claude Code. Each question returns two prints, one to wear and one added to the installation.",
+      tools:       "E-waste label maker body in a recycled suitcase with recycled cape, custom 3D-printed head with Adafruit-controlled lights, e-waste iPhone screen, external keyboard. Local, open-weight AI: OLMo 3 7B from the Allen Institute, run entirely on-device via Ollama with retrieval-augmented generation over a custom corpus of all 7,463 open-access International Society of Learning Sciences (ISLS) papers. Each question returns two prints, one to wear and one added to the installation. Built in collaboration with Claude Code in Terminal.",
       modelCardUrl: "https://docs.google.com/document/d/1Kkdme1Zx665_YfvJIUXjdGpu186q3GayK5DI5vPW3is/edit?usp=sharing",
       rationale:   "The second in a sequence of three projects, moving from the intimate and personal to expertise and trust to the civic and public. Trust in institutions, expertise, and each other is eroding at the exact moment we need science and research most — but there is malleability in the crumble. This piece treats that as a relationship problem, not a technology problem, reclaiming AI as a possible repair for academic trust rather than the force breaking it. A single, open corpus runs entirely on a local, open model, so everything it offers traces back to a paper anyone could read themselves. It asks what research could become if it circulated rather than accumulated, if it were carried and worn rather than filed away.",
       description: "A visitor approaches an automaton and types in a question, the kind of encounter you'd expect from a fortune telling machine that stops passersby, not a search bar. It searches a custom corpus of learning science research, work a community fought to free from the paywalls and gatekeeping of academia, and generates a reply grounded in what it finds there, more provocation than closed answer. The response prints twice as small label stickers. One goes to the visitor to wear, meant to start a conversation. The other joins the automaton's running record, so each response becomes part of what the next visitor encounters.",
@@ -868,7 +868,8 @@
     if (spec && typeof spec === 'object' && spec.type === 'video-player') {
       const video = document.createElement('video');
       video.controls = true;
-      video.preload = 'metadata';
+      video.preload = 'auto';
+      video.addEventListener('loadedmetadata', function() { this.currentTime = 0.001; });
       video.playsInline = true;
       video.setAttribute('aria-label', altText);
       spec.sources.forEach(function(src) {
