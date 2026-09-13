@@ -871,6 +871,7 @@
       video.preload = 'auto';
       video.style.cssText = 'display:block;width:100%;background:#000;';
       video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
+      video.poster = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221%22%20height%3D%221%22%3E%3Crect%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E';
       video.playsInline = true;
       video.setAttribute('aria-label', altText);
       spec.sources.forEach(function(src) {
@@ -1055,7 +1056,7 @@
     video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;cursor:pointer;';
     video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
     video.setAttribute('aria-label', altText);
-    if (thumbnailGif) video.poster = thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/');
+    video.poster = thumbnailGif ? thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/') : 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221%22%20height%3D%221%22%3E%3Crect%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E';
     video.src = src;
     wrap.appendChild(video);
 
