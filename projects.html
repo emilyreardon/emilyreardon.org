@@ -647,7 +647,7 @@
       type:        "personal",
       title:       "Public Record",
       year:        "2026",
-      tools:       "Hand-made resin, mirror, metal & Near Field Communication (NFC) tag sticker mobile. NFC tag stickers connect to a custom web app that connects to Resistbot. Local, open-weight AI: OLMo 3 7B from the Allen Institute, run entirely on-device via Ollama with retrieval-augmented generation over a custom corpus of 137 founding documents of US democracy, owned by the American people. Pipeline built in collaboration with Claude Code.",
+      tools:       "Hand-made resin, mirror, metal & Near Field Communication (NFC) tag sticker mobile. NFC tag stickers connect to a custom web app that connects to Resistbot. Local, open-weight AI: OLMo 3 7B from the Allen Institute, run entirely on-device via Ollama with retrieval-augmented generation over a custom corpus of 137 founding documents of US democracy, owned by the American people. Built in collaboration with Claude Code in Terminal.",
       modelCardUrl: "https://docs.google.com/document/d/1m5hm90y40M-hqfDjAK0utWck-Farf3d_kqSVt-_vx7c/edit?tab=t.0",
       rationale:   "The third in a sequence of three projects, moving from the intimate and personal through expertise and trust to the civic and public. Democracy and its public systems are under attack. Big Tech accelerates disorientation as it routes public engagement away from civic purpose and towards commercial profit — and most people in the U.S. lack a working understanding of how government institutions function, let alone a blueprint for advocating for the changes they want to see. Almost every significant legal change in American history began with someone writing something down: the Federalist Papers as persuasion, the Declaration of Sentiments as grievance, Section 504's sit-in demands as people naming where the law fails them. Political science research confirms the pattern: letters shift legislative attention, constituent contact shapes floor time, and writing is how demands become rights. A public record is an official and permanent account of what a government does and what its people say to it; the Freedom of Information Act guarantees citizens the right to request it. That record outlasts the people who made it — but it has never been complete: enslaved people's testimonies, Indigenous land and sovereignty, and women's political speech are absences throughout most of American history. Public Record treats democracy's primary sources not as monument but as materials to think and act with. A later phase extends this logic without extracting from it: community kits distributed to civic organizations and libraries, with local workforce training for facilitation, aimed at making the installation ownable and sustainable by the communities it serves.",
       description: "Public Record transforms everyday public spaces into places for civic engagement by making democracy's primary sources interactive and actionable. It uses the same tools that people use for commercial tech — a phone, a public space, a few minutes — to grow civic engagement, knowledge, and counter habits that lead to futures that love us. A visitor walks through a public space and encounters a large handmade mobile. Each of its 139 elements represents a primary source of American democracy: founding documents, repudiated decisions, broken treaties, movement demands. Bringing a phone near any element opens a short excerpt and a prompt in plain language rooted in that document. The visitor writes a response, something they notice in their own experience of public life and how they might address it. The installation's local AI reads the submission and returns a brief echo anchored to a specific historical clause, connecting what was just written to what others have already fought for. That response enters the installation's own public record, and visitors can send it directly to an elected representative. What someone imagined and wrote while looking at a mobile in a public space becomes, in that moment, civic participation. A later phase distributes the installation through community kits with local workforce training for facilitation, sent to civic organizations and libraries. A networked backend connects sites so what one community writes reaches the next. An e-waste screen or projection at each site draws people in and creates a shared surface for groups to read the growing record together.",
@@ -665,7 +665,7 @@
       type:        "personal",
       title:       "Soft Machine (Title after Burroughs)",
       year:        "2026",
-      tools:       "Guided performance art. Group phone flashlights, iPhone webcam on center table tracks group light input, sends via Bluetooth to TouchDesigner, custom TouchDesigner patch handles real-time light detection and video triggering, outputs to projection, developed with help from Claude Code. Original video is self-recorded night footage from the Maine coast, shot near amusement rides. Live voice performance by Reardon.",
+      tools:       "Guided performance art. Group phone flashlights, iPhone webcam on center table tracks group light input, sends via Bluetooth to TouchDesigner, custom TouchDesigner patch handles real-time light detection and video triggering, outputs to projection. Original video is self-recorded night footage from the Maine coast, shot near amusement rides. Live voice performance by Reardon. Built in collaboration with Claude Code in Terminal.",
       rationale:   "A performance about bodies and machines, and the uneasy balance between human vitality and machine logic. Using light as indicator and medium, it constructs a space where participation is both an act of belonging and a form of control. It asks not whether we are part of the machine, but what kind of system we are becoming together.",
       description: "A group stands in a circle around a webcam on a low pedestal. The camera reads the light participants control and collect via their mobile phone flashlight. When enough light points at the lens, a video comes into focus: abstract light patterns recorded at night of amusement rides near beach in Maine. When the light drops, the video falls apart. A voice guides the group toward the center, asks for their light, and lets them decide whether to keep it raised or let it drop. The voice speaks of indicator lights, the small signals machines use to say they're working, that they read you. It speaks of machines as relationships to power, to control, of who shapes whom. It says no one here is just input. It closes by asking what kind of systems we are and want to become together.",
       role:        "Entire project. Presented June 20, 2026 at City University of New York, Hunter College Blackbox Theater, NYC, NY.",
@@ -869,7 +869,8 @@
       const video = document.createElement('video');
       video.controls = true;
       video.preload = 'auto';
-      video.addEventListener('loadedmetadata', function() { this.currentTime = 0.001; });
+      video.style.cssText = 'display:block;width:100%;background:#000;';
+      video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
       video.playsInline = true;
       video.setAttribute('aria-label', altText);
       spec.sources.forEach(function(src) {
@@ -1049,9 +1050,10 @@
 
     const video = document.createElement('video');
     video.controls = true;
-    video.preload = 'metadata';
+    video.preload = 'auto';
     video.playsInline = true;
     video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;cursor:pointer;';
+    video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
     video.setAttribute('aria-label', altText);
     if (thumbnailGif) video.poster = thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/');
     video.src = src;
