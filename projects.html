@@ -432,13 +432,9 @@
     }
 
 
-    /* Video player controls — light chrome instead of default dark gradient */
+    /* Video player controls — use browser default (dark gradient on hover) */
     video[controls] {
       color-scheme: light;
-    }
-    video[controls]::-webkit-media-controls-panel {
-      background-image: none;
-      background-color: rgba(255, 255, 255, 0.85);
     }
 
 
@@ -871,7 +867,7 @@
       video.preload = 'auto';
       video.style.cssText = 'display:block;width:100%;background:#000;';
       video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
-      video.poster = 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221%22%20height%3D%221%22%3E%3Crect%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E';
+      video.poster = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
       video.playsInline = true;
       video.setAttribute('aria-label', altText);
       spec.sources.forEach(function(src) {
@@ -1056,7 +1052,7 @@
     video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;cursor:pointer;';
     video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
     video.setAttribute('aria-label', altText);
-    video.poster = thumbnailGif ? thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/') : 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221%22%20height%3D%221%22%3E%3Crect%20fill%3D%22%23000%22%2F%3E%3C%2Fsvg%3E';
+    video.poster = thumbnailGif ? thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/') : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
     video.src = src;
     wrap.appendChild(video);
 
