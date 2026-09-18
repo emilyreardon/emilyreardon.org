@@ -829,6 +829,7 @@
     const img = document.createElement('img');
     img.className = 'project-image';
     img.alt = altText;
+    img.loading = 'lazy';
     img.style.display = 'none';
 
 
@@ -886,6 +887,7 @@
     }
     const img = document.createElement('img');
     img.alt = altText;
+    img.loading = 'lazy';
     img.src = spec;
     return img;
   }
@@ -1177,6 +1179,7 @@
 
       const img = document.createElement('img');
       img.alt = altText;
+      img.loading = 'lazy';
       img.style.display = 'none';
       img.onload = function() {
         img.onload = null;
