@@ -943,7 +943,10 @@
 
 
     function naturalRatio(el) {
-      if (el.tagName === 'VIDEO') return el.videoWidth / el.videoHeight;
+      if (el.tagName === 'VIDEO') {
+        /* Fall back to 16/9 if metadata hasn't loaded yet; layout() re-fires on loadedmetadata */
+        return (el.videoWidth && el.videoHeight) ? el.videoWidth / el.videoHeight : 16 / 9;
+      }
       return el.naturalWidth / el.naturalHeight;
     }
 
