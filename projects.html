@@ -868,12 +868,10 @@
     if (spec && typeof spec === 'object' && spec.type === 'video-player') {
       const video = document.createElement('video');
       video.controls = true;
-      video.preload = 'none';
+      video.preload = spec.thumbnailGif ? 'none' : 'metadata';
       video.style.cssText = 'display:block;width:100%;background:#000;';
       if (spec.thumbnailGif) {
         video.poster = spec.thumbnailGif;
-      } else {
-        video.poster = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
       }
       video.playsInline = true;
       video.setAttribute('aria-label', altText);
