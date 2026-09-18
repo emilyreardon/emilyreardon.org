@@ -1220,8 +1220,13 @@
   function renderProjects() {
     const container = document.getElementById('projects-list');
 
+    /* In focus mode (URL hash = a project id), only render that one project.
+       Rendering all projects then hiding them causes every video to preload. */
+    const focusId = window.location.hash.slice(1);
+    const focusMatch = focusId && projects.find(function(p) { return p.id === focusId; });
+    const projectsToRender = focusMatch ? [focusMatch] : projects;
 
-    projects.forEach(function(p) {
+    projectsToRender.forEach(function(p) {
       const card = document.createElement('article');
       card.className = 'project-card';
       card.dataset.type = p.type;
