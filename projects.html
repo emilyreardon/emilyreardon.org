@@ -675,14 +675,10 @@ A later phase extends this logic without extracting from it: build-your-own mobi
       rationale:   "A performance about bodies and machines, and the uneasy balance between human vitality and machine logic. Using light as indicator and medium, it constructs a space where participation is both an act of belonging and a form of control. It asks not whether we are part of the machine, but what kind of system we are becoming together.",
       description: "A group stands in a circle around a webcam on a low pedestal. The camera reads the light participants control and collect via their mobile phone flashlight. When enough light points at the lens, a video comes into focus: abstract light patterns recorded at night of amusement rides near beach in Maine. When the light drops, the video falls apart. A voice guides the group toward the center, asks for their light, and lets them decide whether to keep it raised or let it drop. The voice speaks of indicator lights, the small signals machines use to say they're working, that they read you. It speaks of machines as relationships to power, to control, of who shapes whom. It says no one here is just input. It closes by asking what kind of systems we are and want to become together.",
       role:        "Entire project. Presented June 20, 2026 at City University of New York, Hunter College Blackbox Theater, NYC, NY.",
-      videoPaths:  null,
-      thumbnailGif: null,
+      videoPaths:  ["images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs).mov"],
+      thumbnailGif: "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_thumb.png",
       imagePaths:  null,
-      gifPaths:    null,
-      mediaRows:   [[
-        "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_still.png",
-        { type: "video-player", sources: ["images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs).mov"], poster: "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_thumb.png" }
-      ]]
+      gifPaths:    null
     },
 
     {
@@ -881,7 +877,7 @@ A later phase extends this logic without extracting from it: build-your-own mobi
       video.preload = 'auto';
       video.style.cssText = 'display:block;width:100%;background:#000;';
       video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
-      video.poster = spec.poster ? spec.poster.split('/').map(function(s){ return encodeURIComponent(s); }).join('/') : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
+      video.poster = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
       video.playsInline = true;
       video.setAttribute('aria-label', altText);
       spec.sources.forEach(function(src) {
@@ -1064,7 +1060,7 @@ A later phase extends this logic without extracting from it: build-your-own mobi
     video.preload = 'auto';
     video.playsInline = true;
     video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;cursor:pointer;';
-    if (!thumbnailGif) { video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; }); }
+    video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
     video.setAttribute('aria-label', altText);
     video.poster = thumbnailGif ? thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/') : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
     video.src = src;
