@@ -869,7 +869,6 @@
       video.controls = true;
       video.preload = 'none';
       video.style.cssText = 'display:block;width:100%;background:#000;';
-      video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
       if (spec.thumbnailGif) {
         video.poster = spec.thumbnailGif;
       } else {
@@ -998,10 +997,8 @@
            so the browser can't auto-size them without a known intrinsic dimension */
         if (!cd.isVstack) {
           cd.elements.forEach(function(el) {
-            if (el.tagName === 'VIDEO') {
-              el.style.height = height + 'px';
-              el.style.width = colW + 'px';
-            }
+            el.style.height = height + 'px';
+            el.style.width = colW + 'px';
           });
         }
 
@@ -1220,13 +1217,7 @@
   function renderProjects() {
     const container = document.getElementById('projects-list');
 
-    /* In focus mode (URL hash = a project id), only render that one project.
-       Rendering all projects then hiding them causes every video to preload. */
-    const focusId = window.location.hash.slice(1);
-    const focusMatch = focusId && projects.find(function(p) { return p.id === focusId; });
-    const projectsToRender = focusMatch ? [focusMatch] : projects;
-
-    projectsToRender.forEach(function(p) {
+    projects.forEach(function(p) {
       const card = document.createElement('article');
       card.className = 'project-card';
       card.dataset.type = p.type;
