@@ -666,6 +666,7 @@
       description: "A group stands in a circle around a webcam on a low pedestal. The camera reads the light participants control and collect via their mobile phone flashlight. When enough light points at the lens, a video comes into focus: abstract light patterns recorded at night of amusement rides near beach in Maine. When the light drops, the video falls apart. A voice guides the group toward the center, asks for their light, and lets them decide whether to keep it raised or let it drop. The voice speaks of indicator lights, the small signals machines use to say they're working, that they read you. It speaks of machines as relationships to power, to control, of who shapes whom. It says no one here is just input. It closes by asking what kind of systems we are and want to become together.",
       role:        "Entire project. Presented June 20, 2026 at City University of New York, Hunter College Blackbox Theater, NYC, NY.",
       videoPaths:  ["images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs).mov"],
+      stillPath:   "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_still.png",
       thumbnailGif: "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_thumb.png",
       imagePaths:  null,
       gifPaths:    null
@@ -867,7 +868,11 @@
       video.preload = 'auto';
       video.style.cssText = 'display:block;width:100%;background:#000;';
       video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
-      video.poster = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
+      if (spec.thumbnailGif) {
+        video.poster = spec.thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/');
+      } else {
+        video.poster = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
+      }
       video.playsInline = true;
       video.setAttribute('aria-label', altText);
       spec.sources.forEach(function(src) {
@@ -1254,9 +1259,19 @@
         });
       }
       if (p.videoPaths && p.videoPaths.length) {
-        p.videoPaths.forEach(function(src) {
-          card.appendChild(buildVideoWrap(src, p.title, p.thumbnailGif || null));
-        });
+        if (p.stillPath) {
+          /* Still image left + video player right, same height */
+          p.videoPaths.forEach(function(src) {
+            card.appendChild(buildImagePairWrap(
+              [p.stillPath, { type: 'video-player', sources: [src], thumbnailGif: p.thumbnailGif || null }],
+              p.title
+            ));
+          });
+        } else {
+          p.videoPaths.forEach(function(src) {
+            card.appendChild(buildVideoWrap(src, p.title, p.thumbnailGif || null));
+          });
+        }
       }
       if (p.audioPaths && p.audioPaths.length) {
         p.audioPaths.forEach(function(src) {
