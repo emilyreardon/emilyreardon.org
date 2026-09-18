@@ -651,10 +651,10 @@
       videoPaths:  null,
       imagePaths:  null,
       imagePairPaths: [
+        "images/personal/EmilyReardon_PublicRecord.jpg",
         "images/personal/EmilyReardon_PublicRecord_amendments.jpg",
         "images/personal/EmilyReardon_PublicRecord_amendments_closeup.jpg",
-        "images/personal/EmilyReardon_PublicRecord.jpg",
-        { type: "video-player", sources: ["images/personal/EmilyReardon_PublicRecord_walkthrough.mp4"] }
+        { type: "video-player", sources: ["images/personal/EmilyReardon_PublicRecord_walkthrough.mp4"], aspectRatio: "9/16" }
       ],
       gifPaths:    null
     },
@@ -872,7 +872,7 @@
       const video = document.createElement('video');
       video.controls = true;
       video.preload = spec.thumbnailGif ? 'none' : 'metadata';
-      video.style.cssText = 'display:block;width:100%;background:#000;';
+      video.style.cssText = 'display:block;width:100%;background:#000;' + (spec.aspectRatio ? ';aspect-ratio:' + spec.aspectRatio : '');
       if (spec.thumbnailGif) {
         video.poster = spec.thumbnailGif;
       }
@@ -948,8 +948,11 @@
 
     function naturalRatio(el) {
       if (el.tagName === 'VIDEO') {
-        /* Fall back to 16/9 if metadata hasn't loaded yet; layout() re-fires on loadedmetadata */
-        return (el.videoWidth && el.videoHeight) ? el.videoWidth / el.videoHeight : 16 / 9;
+        /* Fall back to spec-provided aspect-ratio CSS if set, else 16/9; layout() re-fires on loadedmetadata */
+        if (el.videoWidth && el.videoHeight) return el.videoWidth / el.videoHeight;
+        const ar = el.style.aspectRatio;
+        if (ar) { const p = ar.split('/'); if (p.length === 2) return parseFloat(p[0]) / parseFloat(p[1]); }
+        return 16 / 9;
       }
       return el.naturalWidth / el.naturalHeight;
     }
