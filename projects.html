@@ -665,9 +665,11 @@
       rationale:   "A performance about bodies and machines, and the uneasy balance between human vitality and machine logic. Using light as indicator and medium, it constructs a space where participation is both an act of belonging and a form of control. It asks not whether we are part of the machine, but what kind of system we are becoming together.",
       description: "A group stands in a circle around a webcam on a low pedestal. The camera reads the light participants control and collect via their mobile phone flashlight. When enough light points at the lens, a video comes into focus: abstract light patterns recorded at night of amusement rides near beach in Maine. When the light drops, the video falls apart. A voice guides the group toward the center, asks for their light, and lets them decide whether to keep it raised or let it drop. The voice speaks of indicator lights, the small signals machines use to say they're working, that they read you. It speaks of machines as relationships to power, to control, of who shapes whom. It says no one here is just input. It closes by asking what kind of systems we are and want to become together.",
       role:        "Entire project. Presented June 20, 2026 at City University of New York, Hunter College Blackbox Theater, NYC, NY.",
-      videoPaths:  ["images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs).mov"],
-      stillPath:   "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_still.png",
-      thumbnailGif: "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_thumb.png",
+      imagePairPaths: [
+        "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_still.png",
+        { type: "video-player", sources: ["images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs).mov"], thumbnailGif: "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_thumb.png" }
+      ],
+      videoPaths:  null,
       imagePaths:  null,
       gifPaths:    null
     },
@@ -865,7 +867,7 @@
     if (spec && typeof spec === 'object' && spec.type === 'video-player') {
       const video = document.createElement('video');
       video.controls = true;
-      video.preload = 'auto';
+      video.preload = 'none';
       video.style.cssText = 'display:block;width:100%;background:#000;';
       video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
       if (spec.thumbnailGif) {
