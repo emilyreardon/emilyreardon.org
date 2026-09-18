@@ -871,7 +871,7 @@
       video.style.cssText = 'display:block;width:100%;background:#000;';
       video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
       if (spec.thumbnailGif) {
-        video.poster = spec.thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/');
+        video.poster = spec.thumbnailGif;
       } else {
         video.poster = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGNgYGAAAAAEAAH2FzhVAAAAAElFTkSuQmCC';
       }
@@ -994,6 +994,16 @@
         cd.col.style.flex = '0 0 auto';
         const colW = height * ks[i];
         cd.col.style.width = colW + 'px';
+        /* Explicitly size video elements — preload:none means videoWidth/height are 0
+           so the browser can't auto-size them without a known intrinsic dimension */
+        if (!cd.isVstack) {
+          cd.elements.forEach(function(el) {
+            if (el.tagName === 'VIDEO') {
+              el.style.height = height + 'px';
+              el.style.width = colW + 'px';
+            }
+          });
+        }
 
         if (cd.isVstack) {
           /* Distribute available column height across rows proportionally */
@@ -1057,7 +1067,7 @@
 
     const video = document.createElement('video');
     video.controls = true;
-    video.preload = 'auto';
+    video.preload = 'metadata';
     video.playsInline = true;
     video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;cursor:pointer;';
     video.addEventListener('loadeddata', function() { if (this.currentTime === 0) this.currentTime = 0.001; });
