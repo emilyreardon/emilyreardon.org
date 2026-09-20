@@ -510,6 +510,109 @@
     }
     body.project-focus .project-back-link:hover { color: #000; }
 
+    /* View images button — below media block, replaces title ↗ */
+    .project-view-btn {
+      display: block;
+      text-align: right;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: #aaa;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.35rem 0 0 0;
+      font-family: 'Inter', Helvetica, Arial, sans-serif;
+      transition: color 0.18s ease;
+      width: 100%;
+    }
+    .project-view-btn:hover { color: #000; }
+    body.project-focus .project-view-btn { display: none; }
+
+    /* Lightbox */
+    #visual-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.93);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    #visual-lightbox.open { display: flex; }
+    .lb-close {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 1.7rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: color 0.18s;
+      padding: 0;
+      font-family: inherit;
+    }
+    .lb-close:hover { color: #fff; }
+    .lb-inner {
+      width: 90vw;
+      max-width: 960px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .lb-stage {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+    .lb-stage img {
+      max-width: 100%;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+    }
+    .lb-stage video {
+      max-width: 100%;
+      max-height: 82vh;
+      display: block;
+      background: #000;
+    }
+    .lb-stage .audio-player {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+    .lb-stage .audio-play-btn { color: #fff; }
+    .lb-stage .audio-time { color: rgba(255,255,255,0.55); }
+    .lb-nav {
+      display: none;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 0.9rem;
+    }
+    .lb-nav.visible { display: flex; }
+    .lb-arrow {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.5);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.18s;
+      padding: 0;
+      line-height: 1;
+    }
+    .lb-arrow:hover { color: #fff; }
+    .lb-counter {
+      font-family: 'Inter', Helvetica, Arial, sans-serif;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      font-variant-numeric: tabular-nums;
+    }
 
     </style>
 </head>
@@ -566,6 +669,19 @@
 <main class="main-content" id="projects-list"></main>
 
 
+<!-- Visual lightbox -->
+<div id="visual-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <div class="lb-inner">
+    <div class="lb-stage" id="lb-stage"></div>
+    <div class="lb-nav" id="lb-nav">
+      <button class="lb-arrow" id="lb-prev" aria-label="Previous image">&#8592;</button>
+      <span class="lb-counter" id="lb-counter"></span>
+      <button class="lb-arrow" id="lb-next" aria-label="Next image">&#8594;</button>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-container">
     &#169; 2026 Emily Reardon. Intentionally simple, designed for durability, guided by open & ethical practices. Made with HTML, CSS, & JavaScript. Hosted on GitHub Pages.
@@ -589,7 +705,7 @@
       year:        "2025",
       tools:       "Hand-made crystal & metal mobile, projection. Custom built Small Language Model AI via AutoLume, Open Sound Control (OSC) over local network (LAN), TouchDesigner.",
       modelCardUrl: "https://docs.google.com/document/d/1rzKSsF7OlNp1FQX9yRuO-tw4vZ30CJb3WgwbQk_36yQ/edit?tab=t.0",
-      rationale:   "This work starts with inversion: what does ethical AI look like when every Big Tech default choice is reversed? Where commercial AI extracts, this gathers by consent. Where training is text-heavy and vast, this corpus is pre-literate, small, emotional, and slow — roughly 500 intimate artworks lovingly bestowed rather than non-consensually scraped. Where engagement is disembodied and chatted, this is felt and moved through. Where AI accelerates and scales, this runs locally and offline, generating no data and no carbon. When these inversions compound, care and safety replace the erosion of trust and confusion of reality. What are machines, what is learning, what is artificial, and what is the real we want? What does modeling good look like?",
+      rationale:   "This work starts with inversion: what does ethical AI look like when every Big Tech default choice is reversed? Where commercial AI extracts, this gathers by consent. Where training is text-heavy and vast, this corpus is pre-literate, small, emotional, and slow — roughly 500 intimate artworks lovingly bestowed rather than non-consensually scraped. Where engagement is disembodied and chatted, this is felt and moved through. Where AI accelerates and scales, this runs locally and offline, generating no data and no carbon. When these inversions compound, care and safety replace the erosion of trust and confusion of reality. What are machines, what is learning, what is artificial, and what is the real we want? What prototypes might help us refuse the futures we've been handed.",
       description: "A three-foot crystal-and-metal mobile hangs at the center of the space. An AI's responses are projected through it, the crystal elements catching and refracting light into shifting patterns across the room. Visitors interact through facial expressions and full-body movement, navigating the AI's latent space in real time. The corpus is not text, and neither is what the AI returns: both are pure expression, pre-literate and embodied. As the visitor moves, what the mobile refracts shifts with them, making that traversal visible, an abstract machine process made felt and watched. The entire system runs offline, without internet or cloud connection.",
       role:        "Entire project.",
       videoPaths:  null,
@@ -1234,18 +1350,7 @@
       /* title */
       const title = document.createElement('h2');
       title.className = 'project-title';
-
-      const openBtn = document.createElement('a');
-      openBtn.href = 'projects.html#' + p.id;
-      openBtn.target = '_blank';
-      openBtn.rel = 'noopener';
-      openBtn.className = 'project-open-btn';
-      openBtn.title = 'Open in new window';
-      openBtn.setAttribute('aria-label', 'Open ' + p.title + ' in new window');
-      openBtn.textContent = '\u2197';
-      title.appendChild(openBtn);
-
-      title.prepend(document.createTextNode(p.title));
+      title.appendChild(document.createTextNode(p.title));
       card.appendChild(title);
 
 
@@ -1257,6 +1362,37 @@
         return path.toLowerCase().indexOf('process') !== -1;
       });
 
+      /* \u2500\u2500 Lightbox item builders \u2014 collected while rendering inline media \u2500\u2500 */
+      const lbItems = [];
+
+      function collectSpec(spec) {
+        if (!spec) return;
+        if (typeof spec === 'string') {
+          lbItems.push(function() {
+            const img = document.createElement('img');
+            img.src = spec; img.alt = p.title;
+            return img;
+          });
+        } else if (spec.type === 'video' || spec.type === 'video-player') {
+          lbItems.push(function() {
+            const video = document.createElement('video');
+            video.controls = true; video.playsInline = true; video.preload = 'metadata';
+            if (spec.thumbnailGif) video.poster = spec.thumbnailGif;
+            if (spec.aspectRatio) video.style.aspectRatio = spec.aspectRatio;
+            (spec.sources || []).forEach(function(src) {
+              const s = document.createElement('source');
+              s.src = src;
+              s.type = src.split('.').pop().toLowerCase() === 'webm' ? 'video/webm' : 'video/mp4';
+              video.appendChild(s);
+            });
+            return video;
+          });
+        } else if (spec.type === 'vstack') {
+          (spec.rows || []).forEach(function(row) {
+            (Array.isArray(row) ? row : [row]).forEach(collectSpec);
+          });
+        }
+      }
 
       /* media: images/gifs first, then videos, then audio */
       if (p.mediaRows && p.mediaRows.length) {
@@ -1264,20 +1400,34 @@
           const rowEl = buildImagePairWrap(row, p.title);
           if (idx > 0) rowEl.style.marginTop = '0.75rem';
           card.appendChild(rowEl);
+          row.forEach(collectSpec);
         });
       } else if (p.gifPaths && p.gifPaths.length) {
         card.appendChild(buildGifGrid(p.gifPaths, p.title));
+        p.gifPaths.forEach(function(src) {
+          lbItems.push(function() {
+            const img = document.createElement('img');
+            img.src = src; img.alt = p.title;
+            return img;
+          });
+        });
       } else if ((p.imagePairPaths && p.imagePairPaths.length) || mainImagePaths.length) {
         if (p.imagePairPaths && p.imagePairPaths.length) {
           card.appendChild(buildImagePairWrap(p.imagePairPaths, p.title));
+          p.imagePairPaths.forEach(collectSpec);
         }
         mainImagePaths.forEach(function(basePath) {
           card.appendChild(buildImageWrap(basePath, p.title));
+          lbItems.push(function() {
+            const img = document.createElement('img');
+            img.alt = p.title;
+            tryLoadImage(basePath, [...EXTS], img, null);
+            return img;
+          });
         });
       }
       if (p.videoPaths && p.videoPaths.length) {
         if (p.stillPath) {
-          /* Still image left + video player right, same height */
           p.videoPaths.forEach(function(src) {
             card.appendChild(buildImagePairWrap(
               [p.stillPath, { type: 'video-player', sources: [src], thumbnailGif: p.thumbnailGif || null }],
@@ -1289,13 +1439,36 @@
             card.appendChild(buildVideoWrap(src, p.title, p.thumbnailGif || null));
           });
         }
+        p.videoPaths.forEach(function(src) {
+          var thumb = p.thumbnailGif || null;
+          lbItems.push(function() {
+            const video = document.createElement('video');
+            video.controls = true; video.playsInline = true; video.preload = 'metadata';
+            if (thumb) video.poster = thumb;
+            const s = document.createElement('source');
+            s.src = src;
+            s.type = src.split('.').pop().toLowerCase() === 'webm' ? 'video/webm' : 'video/mp4';
+            video.appendChild(s);
+            return video;
+          });
+        });
       }
       if (p.audioPaths && p.audioPaths.length) {
         p.audioPaths.forEach(function(src) {
           card.appendChild(buildAudioWrap(src, p.title));
+          lbItems.push(function() { return buildAudioWrap(src, p.title); });
         });
       }
 
+      /* \u2197 view images button \u2014 below media, opens lightbox */
+      if (lbItems.length > 0) {
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'project-view-btn';
+        viewBtn.setAttribute('aria-label', 'View images for ' + p.title + ' fullscreen');
+        viewBtn.textContent = '\u2197 view images';
+        viewBtn.addEventListener('click', function() { openLightbox(lbItems); });
+        card.appendChild(viewBtn);
+      }
 
       /* byline */
       const byline = document.createElement('p');
@@ -1595,6 +1768,68 @@
       navContainer.classList.toggle('menu-open');
     });
   }
+
+  /* ── Lightbox system ── */
+  (function() {
+    const lightbox = document.getElementById('visual-lightbox');
+    if (!lightbox) return;
+    const stage    = document.getElementById('lb-stage');
+    const nav      = document.getElementById('lb-nav');
+    const prevBtn  = document.getElementById('lb-prev');
+    const nextBtn  = document.getElementById('lb-next');
+    const counter  = document.getElementById('lb-counter');
+    const closeBtn = lightbox.querySelector('.lb-close');
+    let current = 0;
+    let items   = [];
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      stage.querySelectorAll('video, audio').forEach(function(el) { el.pause(); });
+      stage.innerHTML = '';
+      nav.classList.remove('visible');
+      items = []; current = 0;
+      document.body.style.overflow = '';
+    }
+
+    function showSlide(idx) {
+      stage.innerHTML = '';
+      current = ((idx % items.length) + items.length) % items.length;
+      var el = items[current]();
+      if (el.tagName === 'IMG') {
+        el.style.cssText = 'max-width:100%;max-height:82vh;object-fit:contain;display:block;margin:auto;';
+      } else if (el.tagName === 'VIDEO') {
+        el.style.cssText = 'max-width:100%;max-height:82vh;display:block;background:#000;margin:auto;';
+      }
+      stage.appendChild(el);
+      if (items.length > 1) {
+        nav.classList.add('visible');
+        counter.textContent = (current + 1) + ' / ' + items.length;
+      } else {
+        nav.classList.remove('visible');
+      }
+    }
+
+    window.openLightbox = function(lbItems) {
+      items = lbItems;
+      current = 0;
+      document.body.style.overflow = 'hidden';
+      lightbox.classList.add('open');
+      showSlide(0);
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    prevBtn.addEventListener('click', function() { showSlide(current - 1); });
+    nextBtn.addEventListener('click', function() { showSlide(current + 1); });
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  showSlide(current - 1);
+      if (e.key === 'ArrowRight') showSlide(current + 1);
+    });
+  })();
 </script>
 </body>
 </html>
