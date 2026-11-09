@@ -132,3 +132,28 @@ To export the CSV: in Google Sheets go to **File → Download → Comma Separate
    git revert HEAD
    git push
    ```
+
+
+---
+
+## Project pages (one page per project)
+
+Each project has its own page (e.g. `research-for-humans.html`), linked from the
+"↗ view project" link on its card. These pages are generated from projects.html.
+
+After any change to a project in projects.html, run this in Terminal from the repo folder:
+```
+node build-project-pages.js
+```
+It rewrites every project page and sitemap.xml. Don't edit the project pages by hand;
+the next build overwrites them.
+
+Each project block needs a `page:` filename. The tombstone (the caption under the title) uses:
+- `medium:` short materials line
+- `shown:` "Exhibited at …" or "Presented at …"
+- `credit:` "With …" (collaborators) or "For …" (organization)
+
+Then commit as usual, including the new pages:
+```
+git add -A && git commit -m "update projects" && git push
+```

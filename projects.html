@@ -524,6 +524,8 @@
       font-family: 'Inter', Helvetica, Arial, sans-serif;
       transition: color 0.18s ease;
       width: 100%;
+      text-decoration: none;
+      box-sizing: border-box;
     }
     .project-view-btn:hover { color: #000; }
     body.project-focus .project-view-btn { display: none; }
@@ -700,6 +702,8 @@
 
     {
       id:          "PER_001",
+      page:        "intimacy-as-infrastructure.html",
+      medium:      "Handmade crystal and metal mobile, projection, custom small language model (AutoLume), Open Sound Control, TouchDesigner",
       type:        "personal",
       title:       "Intimacy as Infrastructure",
       year:        "2025",
@@ -729,6 +733,10 @@
     },
     {
       id:          "COL_001",
+      page:        "research-for-humans.html",
+      medium:      "E-waste label maker, recycled suitcase and cape, 3D-printed head, Adafruit-controlled lights, iPhone screen, thermal printers, local open-weight AI (OLMo 3 7B)",
+      shown:       "Exhibited at the International Society of the Learning Sciences 2026 Gallery Show, UC Irvine, June 16–19, 2026",
+      credit:      "With Lucius Von Joo, Chris Moffett, and OreOluwa Badaki",
       type:        "collaborative",
       title:       "Research for Humans",
       year:        "2026",
@@ -756,6 +764,8 @@
 
     {
       id:          "PER_002",
+      page:        "public-record.html",
+      medium:      "Handmade resin, mirror, metal, and NFC-tag mobile; custom web app; local open-weight AI (OLMo 3 7B)",
       type:        "personal",
       title:       "Public Record",
       year:        "2026",
@@ -776,6 +786,9 @@
     },
 {
       id:          "PER_004",
+      page:        "soft-machine.html",
+      medium:      "Guided performance: participants' phone flashlights, webcam, TouchDesigner, projection, live voice",
+      shown:       "Presented at Hunter College Blackbox Theater, City University of New York, June 20, 2026",
       type:        "personal",
       title:       "Soft Machine (Title after Burroughs)",
       year:        "2026",
@@ -794,6 +807,8 @@
 
     {
       id:          "PER_000",
+      page:        "open-perimeter.html",
+      medium:      "Audiovisual composition, 4:01.22: field recordings, sun printing, OpenStreetMap data",
       type:        "personal",
       title:       "Open Perimeter: Open Data Ecoacoustic Study",
       year:        "2026",
@@ -810,6 +825,8 @@
 
     {
       id:          "PER_003",
+      page:        "latent-curricula.html",
+      medium:      "Animated digital tiny prints (in progress)",
       type:        "personal",
       title:       "Latent Curricula Computational Tiny Prints",
       year:        "2026",
@@ -835,6 +852,10 @@
 
     {
       id:          "COL_000",
+      page:        "re-threaded.html",
+      medium:      "Performance installation: dance, sonic loops, live breathwork, projected colored oil",
+      shown:       "Presented at CAMRA's “Portals” Gallery Show, Annenberg School for Communication, Philadelphia, March 28, 2026",
+      credit:      "With OUR COLLECTIVE, led by OreOluwa Badaki, with Lucius Von Joo and Chris Moffett",
       type:        "collaborative",
       title:       "Re-threaded",
       year:        "2026",
@@ -857,6 +878,9 @@
 
     {
       id:          "PRO_002",
+      page:        "sesame-street-family-play.html",
+      medium:      "iPhone and Android app",
+      credit:      "For Sesame Workshop",
       type:        "professional",
       title:       "Sesame Street Family Play",
       year:        "2013",
@@ -871,6 +895,9 @@
 
     {
       id:          "PRO_001",
+      page:        "grovers-block-party.html",
+      medium:      "Letter blocks, augmented reality, computer vision",
+      credit:      "For Sesame Workshop",
       type:        "professional",
       title:       "Grover's Block Party",
       year:        "2013",
@@ -885,6 +912,9 @@
 
     {
       id:          "PRO_003",
+      page:        "sesame-street-playset.html",
+      medium:      "Physical playset, iPad, augmented reality, computer vision",
+      credit:      "For Sesame Workshop",
       type:        "professional",
       title:       "Sesame Street Playset",
       year:        "2012",
@@ -898,6 +928,9 @@
     },
     {
       id: "PRO_004",
+      page:        "the-electric-company.html",
+      medium:      "Website, PBS television series, and comic book series",
+      credit:      "For Sesame Workshop",
       type: "professional",
       title: "The Electric Company",
       year: "2010",
@@ -1460,14 +1493,14 @@
         });
       }
 
-      /* \u2197 view images button \u2014 below media, opens lightbox */
-      if (lbItems.length > 0) {
-        const viewBtn = document.createElement('button');
-        viewBtn.className = 'project-view-btn';
-        viewBtn.setAttribute('aria-label', 'View images for ' + p.title + ' fullscreen');
-        viewBtn.textContent = '\u2197 view images';
-        viewBtn.addEventListener('click', function() { openLightbox(lbItems); });
-        card.appendChild(viewBtn);
+      /* \u2197 view project link \u2014 below media, opens the project's own page */
+      if (p.page) {
+        const viewLink = document.createElement('a');
+        viewLink.className = 'project-view-btn';
+        viewLink.href = p.page;
+        viewLink.setAttribute('aria-label', 'View the ' + p.title + ' project page');
+        viewLink.textContent = '\u2197 view project';
+        card.appendChild(viewLink);
       }
 
       /* byline */
@@ -1563,32 +1596,12 @@
 
   renderProjects();
 
-  /* ── Single-project focus mode (URL hash = project id) ── */
+  /* ── Old single-project links (projects.html#ID) forward to the project's own page ── */
   (function () {
     const hash = window.location.hash.slice(1);
     if (!hash) return;
     const match = projects.find(function (p) { return p.id === hash; });
-    if (!match) return;
-
-    document.body.classList.add('project-focus');
-    document.title = match.title + ' | Emily Reardon';
-
-    document.querySelectorAll('.project-card').forEach(function (card) {
-      if (card.dataset.id !== hash) card.style.display = 'none';
-    });
-
-    const focusedCard = document.querySelector('.project-card[data-id="' + hash + '"]');
-    if (focusedCard) focusedCard.style.borderTop = '1px solid #000';
-
-    const backLink = document.createElement('a');
-    backLink.href = 'projects.html';
-    backLink.className = 'project-back-link';
-    backLink.textContent = '\u2190 All projects';
-    const main = document.getElementById('projects-list');
-    if (!main.querySelector('.project-back-link')) main.insertBefore(backLink, main.firstChild);
-
-    const focusBtn = document.querySelector('.project-card[data-id="' + hash + '"] .project-open-btn');
-    if (focusBtn) focusBtn.remove();
+    if (match && match.page) window.location.replace(match.page);
   })();
 
 
