@@ -276,7 +276,7 @@
   
     
     .footer-container {
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       padding-left: 0;
       padding-right: 0;
       text-align: center;
@@ -341,10 +341,19 @@
 
 <footer class="site-footer">
   <div class="footer-container">
-    <a href="mailto:emily.reardon@gmail.com" style="color: inherit;">emily.reardon@gmail.com</a><br>
-    &#169; 2026 Emily Reardon. Intentionally simple, designed for durability, guided by open & ethical practices. Made with HTML, CSS, & JavaScript. Hosted on GitHub Pages.
+    <a class="footer-email" href="#" data-u="emily.reardon" data-d="gmail.com" style="color: inherit;">emily.reardon [at] gmail.com</a>. &#169; 2026 Emily Reardon. Intentionally simple, designed for durability, guided by open & ethical practices. Made with HTML, CSS, & JavaScript. Hosted on GitHub Pages.
   </div>
 </footer>
+
+  <script>
+    /* Email is assembled here so the plain address never appears in the page source (fewer spam scrapers). */
+    document.querySelectorAll('.footer-email').forEach(function (a) {
+      var addr = a.dataset.u + '@' + a.dataset.d;
+      a.href = 'mailto:' + addr;
+      a.textContent = addr;
+    });
+  </script>
+
 
 
 <script>
