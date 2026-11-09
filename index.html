@@ -12,7 +12,9 @@
   <meta property="og:title" content="Emily Reardon">
   <meta property="og:description" content="Emily Reardon is an Emmy Award-winning designer, inventor, and creative technologist building public-interest AI, feminist tech futures, and human-AI interaction experiences.">
   <meta property="og:url" content="https://emilyreardon.org/">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://emilyreardon.org/images/personal/EmilyReardon_IntimacyAsInfrastructure_landing.jpg">
+  <meta property="og:image" content="https://emilyreardon.org/images/personal/EmilyReardon_IntimacyAsInfrastructure_landing.jpg">
   <meta name="twitter:title" content="Emily Reardon">
   <meta name="twitter:description" content="Emily Reardon is an Emmy Award-winning designer, inventor, and creative technologist building public-interest AI, feminist tech futures, and human-AI interaction experiences.">
   <script type="application/ld+json">
@@ -225,6 +227,34 @@
     }
 
 
+    /* Landing image */
+    .landing-figure {
+      margin: 0 0 2rem 0;
+    }
+    .landing-figure a {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+    .landing-figure img {
+      display: block;
+      width: 100%;
+      height: min(62vh, 560px);
+      object-fit: cover;
+      object-position: center 40%;
+      background: #000;
+    }
+    .landing-figure figcaption {
+      font-size: 0.72rem;
+      margin-top: 0.5rem;
+      color: #555;
+    }
+    .landing-figure a:hover figcaption { color: #000; }
+    @media (max-width: 768px) {
+      .landing-figure img { height: auto; }
+    }
+
+
     .section-header {
       font-weight: bold;
       font-size: 0.9rem;
@@ -382,7 +412,7 @@
         <li><a href="/writing.html">Writing</a></li>
         <li><a href="/teaching.html">Teaching</a></li>
         <li><a href="/about.html">About</a></li>
-        <li><a href="/Emily Reardon_CV.pdf" target="_blank">CV</a></li>
+        <li><a href="/Emily-Reardon-CV.pdf" target="_blank">CV</a></li>
       </ul>
     </nav>
 
@@ -392,6 +422,14 @@
 
 
   <main class="main-content">
+    <figure class="landing-figure">
+      <a href="intimacy-as-infrastructure.html">
+        <img src="images/personal/EmilyReardon_IntimacyAsInfrastructure_landing.jpg"
+             width="1090" height="980"
+             alt="Hanging crystal prisms and glass beads on thin chains and wire, lit in front of a glowing green projection, scattering small rainbows across a dark wall.">
+        <figcaption>&#8599; <em>Intimacy as Infrastructure</em>, 2025. Handmade crystal and metal mobile, projection, custom small language model.</figcaption>
+      </a>
+    </figure>
     <section class="intro">
       <p>I <strong>design, make, and study hybrid digital-analog experiences</strong> that help people grow, connect, and participate in the world around them.</p>
       <p>Working across the material and the technical, my practice draws from <strong>play, storytelling, learning, craft, community collaboration, and public justice</strong>. I build experiences and systems that invite participation rather than passive consumption, cultivating <strong>agency, belonging, and care</strong>.</p>
@@ -402,7 +440,8 @@
 
   <footer class="site-footer">
     <div class="footer-container">
-      &#169; 2026 Emily Reardon. Intentionally simple, designed for durability, guided by open & ethical practices. Made with HTML, CSS, & JavaScript. Hosted on GitHub Pages.
+      <a href="mailto:emily.reardon@gmail.com" style="color: inherit;">emily.reardon@gmail.com</a><br>
+    &#169; 2026 Emily Reardon. Intentionally simple, designed for durability, guided by open & ethical practices. Made with HTML, CSS, & JavaScript. Hosted on GitHub Pages.
     </div>
   </footer>
 
