@@ -7,10 +7,6 @@
   <title>Grover's Block Party (2013) | Emily Reardon</title>
   <meta name="description" content="Kids play with letter blocks on a playdate with Grover &amp; 26 Letter Muppets.">
   <link rel="canonical" href="https://emilyreardon.org/grovers-block-party.html">
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Emily Reardon">
   <meta property="og:title" content="Grover's Block Party (2013)">
@@ -469,26 +465,6 @@
       letter-spacing: 0.04em;
     }
     body.project-focus .project-back-link:hover { color: #000; }
-    .project-open-btn {
-      float: right;
-      font-size: 0.78rem;
-      color: #aaa;
-      text-decoration: none;
-      line-height: 1.3;
-      margin-left: 1rem;
-      transition: color 0.18s ease;
-    }
-    .project-open-btn:hover { color: #000; }
-    body.project-focus .filter-bar { display: none; }
-    body.project-focus .project-back-link {
-      display: inline-block;
-      font-size: 0.78rem;
-      color: #555;
-      text-decoration: none;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.04em;
-    }
-    body.project-focus .project-back-link:hover { color: #000; }
 
     /* View images button — below media block, replaces title ↗ */
     .project-view-btn {
@@ -509,6 +485,33 @@
     }
     .project-view-btn:hover { color: #000; }
     body.project-focus .project-view-btn { display: none; }
+    .project-tags {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0.15rem 0 0.75rem 0;
+      padding: 0;
+    }
+    .project-tags li {
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      color: #555;
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      padding: 0.1rem 0.55rem;
+      line-height: 1.5;
+    }
+    .project-pager {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+    }
+    .project-pager a { color: #555; text-decoration: none; }
+    .project-pager a:hover { color: #000; }
 
     /* Lightbox */
     #visual-lightbox {
@@ -597,33 +600,8 @@
     }
 
     </style>
-
-  <style>
-    .work { padding: 2rem 0; border-top: 1px solid #000; border-bottom: 1px solid #000; }
-    .back-link { display: inline-block; font-size: 0.78rem; color: #555; text-decoration: none; margin-bottom: 1.2rem; letter-spacing: 0.04em; }
-    .back-link:hover { color: #000; }
-    .work-title { font-size: 1.4rem; font-weight: bold; margin: 0 0 0.6rem 0; line-height: 1.3; letter-spacing: 0.02em; }
-    .work-title em { font-style: italic; }
-    .tombstone { font-size: 0.82rem; color: #333; line-height: 1.55; margin: 0 0 1.6rem 0; }
-    .tombstone span { display: block; }
-    .work-media { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0 0 1.8rem 0; align-items: start; }
-    .work-media figure { margin: 0; }
-    .work-media figure:first-child, .work-media figure.wide { grid-column: 1 / -1; }
-    .work-media img, .work-media video { display: block; width: 100%; height: auto; background: #f0f0f0; }
-    .work-media audio { width: 100%; }
-    .work-media figure:first-child img { width: auto; max-width: 100%; max-height: 85vh; margin: 0 auto; background: none; }
-    .work-media.gifs { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
-    .work-media.gifs figure:first-child { grid-column: auto; }
-    .work-text { max-width: 680px; }
-    .work-text .project-body + .project-body { margin-top: 0.7rem; }
-    .work-text a { color: #111; }
-    @media (max-width: 600px) {
-      .work-media { grid-template-columns: 1fr; }
-      .work-media.gifs { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
 </head>
-<body>
+<body class="project-focus">
 
 
 <header class="site-header">
@@ -655,7 +633,7 @@
       <li><a href="/writing.html">Writing</a></li>
       <li><a href="/teaching.html">Teaching</a></li>
       <li><a href="/about.html">About</a></li>
-      <li><a href="/Emily-Reardon-CV.pdf" target="_blank">CV</a></li>
+      <li><a href="/EmilyReardonCV.pdf" target="_blank">CV</a></li>
     </ul>
   </nav>
 
@@ -664,39 +642,30 @@
 </header>
 
 
-<main class="main-content">
-  <a class="back-link" href="projects.html">&larr; All projects</a>
-  <article class="work">
-    <h2 class="work-title"><em>Grover's Block Party</em>, 2013</h2>
-    <p class="tombstone">
-        <span>Letter blocks, augmented reality, computer vision</span>
-        <span>For Sesame Workshop</span>
-    </p>
+<!-- Filter bar -->
+<div class="filter-bar" id="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="personal">Personal</button>
+  <button class="filter-btn" data-filter="professional">Professional</button>
+  <button class="filter-btn" data-filter="collaborative">Collaborative</button>
+</div>
 
-    <div class="work-media">
-        <figure><img src="images/professional/EmilyReardon_GroversBlockParty.jpg" alt="Grover's Block Party" loading="eager"></figure>
-      </div>
-    
 
-    <div class="work-text">
-      <p class="project-label">Project Description</p>
-      <p class="project-body">Kids play with letter blocks on a playdate with Grover &amp; 26 Letter Muppets. Grover &amp; letter Muppets react to child-led play: noticing, commenting, questioning, singing, serving up letter videos, &amp; more, to scaffold experimentation &amp; deepen learning.</p>
-      <p class="project-body">Computer vision 'watches'. Dynamic 'mood' tagging automatically animates Grover. Augmented reality enables Grover &amp; letter Muppets to scaffold player. Adaptive personalized patterns &amp; scaffolds drawn from learning science grow with kids play.</p>
-      <p class="project-body">Formative research included iterative in-house play sessions to define a taxonomy of play patterns. Summative research included providing families with these sets as well as non-AR off the shelf block sets, pre/post focus groups, Dscout video recordings matched to behavioral data coded together.</p>
-      <p class="project-label">Rationale</p>
-      <p class="project-body">Young children's deep, imaginative play with traditional toys, like blocks, builds critical skills, but screens often pull them away. How might we harness kids' attraction to technology to restore the rich benefits of deep play, make foundational literacy more engaging, and shift tech's role from directing play to following the child's lead to deepen engagement and foster learning?</p>
-      <p class="project-label">My Role</p>
-      <p class="project-body">Entire project, including concepting, pitching, system design, technology innovation lead, excluding 3rd party vendor and minimal art direction.</p>
-      
+<main class="main-content" id="projects-list" data-only="grovers-block-party.html"></main>
+
+
+<!-- Visual lightbox -->
+<div id="visual-lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" aria-label="Close">&times;</button>
+  <div class="lb-inner">
+    <div class="lb-stage" id="lb-stage"></div>
+    <div class="lb-nav" id="lb-nav">
+      <button class="lb-arrow" id="lb-prev" aria-label="Previous image">&#8592;</button>
+      <span class="lb-counter" id="lb-counter"></span>
+      <button class="lb-arrow" id="lb-next" aria-label="Next image">&#8594;</button>
     </div>
-    
-  </article>
-  <nav class="tombstone" style="display:flex;justify-content:space-between;gap:1rem;margin-top:1rem;" aria-label="More projects">
-    <a class="back-link" href="sesame-street-family-play.html">&larr; Sesame Street Family Play</a>
-    <a class="back-link" href="sesame-street-playset.html" style="text-align:right;">Sesame Street Playset &rarr;</a>
-  </nav>
-</main>
-
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="footer-container">
@@ -707,6 +676,974 @@
 
 
 <script>
+  /* ── Project data ── */
+  /* Source of truth: Portfolio Site ProjectsCSV in Google Drive.
+     To add/edit projects by hand, see HOW-TO-UPDATE-SITE.md in this repo. */
+
+  const projects = [
+
+    /* ── PERSONAL ── */
+
+    {
+      id:          "PER_001",
+      page:        "intimacy-as-infrastructure.html",
+      tags:        ["Local & open-source AI", "Interactive sculpture", "Installation", "Projection"],
+      medium:      "Handmade crystal and metal mobile, projection, custom small language model (AutoLume), Open Sound Control, TouchDesigner",
+      type:        "personal",
+      title:       "Intimacy as Infrastructure",
+      year:        "2025",
+      tools:       "Hand-made crystal & metal mobile, projection. Custom built Small Language Model AI via AutoLume, Open Sound Control (OSC) over local network (LAN), TouchDesigner.",
+      modelCardUrl: "https://docs.google.com/document/d/1rzKSsF7OlNp1FQX9yRuO-tw4vZ30CJb3WgwbQk_36yQ/edit?tab=t.0",
+      rationale:   "This work starts with inversion: what does ethical AI look like when every Big Tech default choice is reversed? Where commercial AI extracts, this gathers by consent. Where training is text-heavy and vast, this corpus is pre-literate, small, emotional, and slow — roughly 500 intimate artworks lovingly bestowed rather than non-consensually scraped. Where engagement is disembodied and chatted, this is felt and moved through. Where AI accelerates and scales, this runs locally and offline, generating no data and no carbon. When these inversions compound, care and safety replace the erosion of trust and confusion of reality. What are machines, what is learning, what is artificial, and what is the real we want? What prototypes might help us refuse the futures we've been handed.",
+      description: "A three-foot crystal-and-metal mobile hangs at the center of the space. An AI's responses are projected through it, the crystal elements catching and refracting light into shifting patterns across the room. Visitors interact through facial expressions and full-body movement, navigating the AI's latent space in real time. The corpus is not text, and neither is what the AI returns: both are pure expression, pre-literate and embodied. As the visitor moves, what the mobile refracts shifts with them, making that traversal visible, an abstract machine process made felt and watched. The entire system runs offline, without internet or cloud connection.",
+      role:        "Entire project.",
+      videoPaths:  null,
+      imagePaths:  ["images/personal/EmilyReardon_AIAsIntimacyProcess"],
+      imagePairPaths: [
+        "images/personal/EmilyReardon_AIAsIntimacy.jpg",
+        {
+          type: "vstack",
+          rows: [
+            [
+              "images/personal/EmilyReardon_AIAsIntimacy_OscFace.jpg",
+              "images/personal/EmilyReardon_AIAsIntimacy_OscBody.jpg"
+            ],
+            [
+              { type: "video", sources: ["images/personal/EmilyReardon_AIAsIntimacy_Animated.webm", "images/personal/EmilyReardon_AIAsIntimacy_Animated.mp4"] }
+            ]
+          ]
+        }
+      ],
+      gifPaths:    null
+    },
+    {
+      id:          "COL_001",
+      page:        "research-for-humans.html",
+      tags:        ["Local & open-source AI", "Interactive sculpture", "Installation", "Civic engagement"],
+      medium:      "E-waste label maker, recycled suitcase and cape, 3D-printed head, Adafruit-controlled lights, iPhone screen, thermal printers, local open-weight AI (OLMo 3 7B)",
+      shown:       "Exhibited at the International Society of the Learning Sciences 2026 Gallery Show, UC Irvine, June 16–19, 2026",
+      credit:      "With Lucius Von Joo, Chris Moffett, and OreOluwa Badaki",
+      type:        "collaborative",
+      title:       "Research for Humans",
+      year:        "2026",
+      tools:       "E-waste label maker body in a recycled suitcase with recycled cape, custom 3D-printed head with Adafruit-controlled lights, e-waste iPhone screen, external keyboard. Local, open-weight AI: OLMo 3 7B from the Allen Institute, run entirely on-device via Ollama with retrieval-augmented generation over a custom corpus of all 7,463 open-access International Society of Learning Sciences (ISLS) papers. Each question returns two prints, one to wear and one added to the installation. Built in collaboration with Claude Code in Terminal.",
+      modelCardUrl: "https://docs.google.com/document/d/1Kkdme1Zx665_YfvJIUXjdGpu186q3GayK5DI5vPW3is/edit?usp=sharing",
+      rationale:   "Trust in institutions, expertise, and each other is eroding at the exact moment we need science and research most — but there is malleability in the crumble. This piece treats that as a relationship problem, not a technology problem, reclaiming AI as a possible repair for academic trust rather than the force breaking it. A single, open corpus runs entirely on a local, open model, so everything it offers traces back to a paper anyone could read themselves. It asks what research could become if it circulated rather than accumulated, if it were carried and worn rather than filed away.",
+      description: "A visitor approaches an automaton and types in a question, the kind of encounter you'd expect from a fortune telling machine that stops passersby, not a search bar. It searches a custom corpus of learning science research, work a community fought to free from the paywalls and gatekeeping of academia, and generates a reply grounded in what it finds there, more provocation than closed answer. The response prints twice as small label stickers. One goes to the visitor to wear, meant to start a conversation. The other joins the automaton's running record, so each response becomes part of what the next visitor encounters.",
+      role:        "Core concept, proposal, ethical workflow and documentation, corpus collection, Ollama backend, voice character. With collaborative team including Lucius Von Joo, Chris Moffett, and OreOluwa Badaki, built automaton and parallel thermal printer mechanism. Presented at the International Society of Learning Sciences 2026 Gallery Show at the University of California Irvine, CA, June 16–19, 2026.",
+      imagePaths:  null,
+      imagePairPaths: null,
+      videoPaths:  null,
+      mediaRows: [
+        [
+          "images/collective/EmilyReardon_ResearchForHumans1.jpg",
+          "images/collective/EmilyReardon_ResearchForHumans2_hand.jpg",
+          { type: "video-player", sources: ["images/collective/EmilyReardon_ResearchForHumans3_kayla.mov"] }
+        ],
+        [
+          { type: "video-player", sources: ["images/collective/EmilyReardon_ResearchForHumans4_question_answer.mov"] },
+          { type: "video-player", sources: ["images/collective/EmilyReardon_ResearchForHumans_corpusmaker.mov"] }
+        ]
+      ],
+      gifPaths:    null
+    },
+
+    {
+      id:          "PER_002",
+      page:        "public-record.html",
+      tags:        ["Local & open-source AI", "Interactive sculpture", "Installation", "Civic engagement", "Open data"],
+      medium:      "Handmade resin, mirror, metal, and NFC-tag mobile; custom web app; local open-weight AI (OLMo 3 7B)",
+      type:        "personal",
+      title:       "Public Record",
+      year:        "2026",
+      tools:       "Hand-made resin, mirror, metal & Near Field Communication (NFC) tag sticker mobile. NFC tag stickers connect to a custom web app that connects to Resistbot. Local, open-weight AI: OLMo 3 7B from the Allen Institute, run entirely on-device via Ollama with retrieval-augmented generation over a custom corpus of 137 founding documents of US democracy, owned by the American people. Built in collaboration with Claude Code in Terminal.",
+      modelCardUrl: "https://docs.google.com/document/d/1m5hm90y40M-hqfDjAK0utWck-Farf3d_kqSVt-_vx7c/edit?tab=t.0",
+      rationale:   "Democracy and its public systems are under attack. Big Tech accelerates disorientation as it routes public engagement away from civic purpose and towards commercial profit — and most people in the U.S. lack a working understanding of how government institutions function, let alone a blueprint for advocating for the changes they want to see.\n\nAlmost every significant legal change in American history began with someone writing something down: the Federalist Papers as persuasion, the Declaration of Sentiments as grievance, Section 504's sit-in demands as people naming where the law fails them. Political science research confirms the pattern: letters shift legislative attention, constituent contact shapes floor time, and writing is how demands become rights.\n\nA public record is an official and permanent account of what a government does and what its people say to it; the Freedom of Information Act guarantees citizens the right to request it. That record outlasts the people who made it, but it has never been complete: enslaved people's testimonies, Indigenous land and sovereignty, and women's political speech remain largely absent from the official record. Public Record treats democracy's primary sources not as monument but as materials to think and act with.",
+      description: "Public Record transforms everyday public spaces into places for civic engagement by making democracy's primary sources interactive and actionable. It uses the same tools as commercial tech — a phone, a public space, a few minutes — but toward a different end: growing civic knowledge and the habits that lead to futures that love us.\n\nA visitor encounters a large handmade mobile. Each of its 139 elements represents a primary source of American democracy: founding documents, repudiated decisions, broken treaties, movement demands. Bringing a phone near any element opens a key excerpt and a plain-language prompt asking what the visitor notices in public life today, and what they'd change. The installation's custom local AI reads the submission and returns a response anchored to a specific historical clause, connecting what was just written to what others have already fought for. That response enters the installation's own public record, and visitors can send it directly to an elected representative. An e-waste screen or projection at each site draws people in and creates a shared surface for groups to read the growing record together.\n\nA later phase extends this logic without extracting from it: build-your-own mobile kits are distributed to community organizations and spaces. Communities design their own mobile according to their own mental models — organizing the 139 sources by date, theme, geography, or local relevance — and a networked backend shares that public voice across sites, reconnecting civic work and helping rebuild public systems.",
+      role:        "Entire project.",
+      videoPaths:  null,
+      imagePaths:  null,
+      imagePairPaths: [
+        "images/personal/EmilyReardon_PublicRecord.jpg",
+        "images/personal/EmilyReardon_PublicRecord_amendments.jpg",
+        "images/personal/EmilyReardon_PublicRecord_amendments_closeup.jpg",
+        { type: "video-player", sources: ["images/personal/EmilyReardon_PublicRecord_walkthrough.mp4"], aspectRatio: "9/16" }
+      ],
+      gifPaths:    null
+    },
+{
+      id:          "PER_004",
+      page:        "soft-machine.html",
+      tags:        ["Video", "Installation", "Performance", "Projection"],
+      medium:      "Guided performance: participants' phone flashlights, webcam, TouchDesigner, projection, live voice",
+      shown:       "Presented at Hunter College Blackbox Theater, City University of New York, June 20, 2026",
+      type:        "personal",
+      title:       "Soft Machine (Title after Burroughs)",
+      year:        "2026",
+      tools:       "Guided performance art. Group phone flashlights, iPhone webcam on center table tracks group light input, sends via Bluetooth to TouchDesigner, custom TouchDesigner patch handles real-time light detection and video triggering, outputs to projection. Original video is self-recorded night footage from the Maine coast, shot near amusement rides. Live voice performance by Reardon. Built in collaboration with Claude Code in Terminal.",
+      rationale:   "A performance about bodies and machines, and the uneasy balance between human vitality and machine logic. Using light as indicator and medium, it constructs a space where participation is both an act of belonging and a form of control. It asks not whether we are part of the machine, but what kind of system we are becoming together.",
+      description: "A group stands in a circle around a webcam on a low pedestal. The camera reads the light participants control and collect via their mobile phone flashlight. When enough light points at the lens, a video comes into focus: abstract light patterns recorded at night of amusement rides near beach in Maine. When the light drops, the video falls apart. A voice guides the group toward the center, asks for their light, and lets them decide whether to keep it raised or let it drop. The voice speaks of indicator lights, the small signals machines use to say they're working, that they read you. It speaks of machines as relationships to power, to control, of who shapes whom. It says no one here is just input. It closes by asking what kind of systems we are and want to become together.",
+      role:        "Entire project. Presented June 20, 2026 at City University of New York, Hunter College Blackbox Theater, NYC, NY.",
+      imagePairPaths: [
+        "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_still.jpg",
+        { type: "video-player", sources: ["images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs).mov"], thumbnailGif: "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_thumb.jpg" }
+      ],
+      videoPaths:  null,
+      imagePaths:  null,
+      gifPaths:    null
+    },
+
+    {
+      id:          "PER_000",
+      page:        "open-perimeter.html",
+      tags:        ["Sound", "Open data", "Computational typography"],
+      medium:      "Audiovisual composition, 4:01.22: field recordings, sun printing, OpenStreetMap data",
+      type:        "personal",
+      title:       "Open Perimeter: Open Data Ecoacoustic Study",
+      year:        "2026",
+      tools:       "iPhone Voice Memo & Camera apps for field recordings, produced in Audacity. Sun printing, OpenStreetMap.org data commons, two aerial images sources: https://marinas.com/view/harbor/ygtm4_Scituate_Harbor_Scituate_MA_United_States#&gid=1&pid=3 & reposted via Pinterest https://i.pinimg.com/1200x/93/88/68/93886877f1c260e483d058688791b2e0.jpg, both unknown creator. Work compiled in After Effects.",
+      rationale:   "Life and its things come and go. If we listen and stay, what can we learn about place, people, and belonging? This ecoacoustic piece considers how landscapes hold openings, personal histories, grief, ritual, and everyday life all at once. It's made from a heart-shaped harbor in southeastern Massachusetts, viewable from my window. My family has lived by it for generations. My mom's memorial was held at the town marina on its edge and her ashes are part of its tide.",
+      description: "An ambient audiovisual composition centered on Scituate Harbor, Massachusetts. The runtime, 4:01.22, spells out the date my mom's ashes entered the harbor tide: April 1, 2022. It's a shifting audio portrait of a harbor with an open perimeter, always letting water in and out, and of memory doing the same thing.",
+      role:        "Entire project.",
+      videoPaths:  ["images/personal/Emily Reardon_Scituate Harbor Ecoacoustic Study.mp4"],
+      thumbnailGif: "images/personal/Emily Reardon_Scituate Harbor Ecoacoustic Study_thumbnail.jpg",
+      imagePaths:  null,
+      gifPaths:    null
+    },
+
+
+    {
+      id:          "PER_003",
+      page:        "latent-curricula.html",
+      tags:        ["Computational typography"],
+      medium:      "Animated digital tiny prints (in progress)",
+      type:        "personal",
+      title:       "Latent Curricula Computational Tiny Prints",
+      year:        "2026",
+      tools:       "In-progress. Found and shared 'love curriculum' experiments in Cavalry / Typeflow / Typeface Animator.",
+      rationale:   "If the universe is the syllabus, how do we study love as liberation? Drawn from encounters with songs, texts, streets, and dialogue, these curricular fragments bend at the edge of legibility. What is learning, and how does it interact with art? Printmaking has long fueled social action; when small-scale and personal tiny prints mix with technology, what new scales of reach, participation, and impact become possible?",
+      description: "Over a few days I noted encounters that might serve as curricula for radical love, the idea that love (beyond romantic or familial love) is important in places where it has historically been sidelined or avoided, such as in classrooms, workplaces, politics, and beyond. The snippets I collected — lyrics to Prince's I Would Die For You, a photo of a stickie note posted in the Union Square subway after Trump's first presidential election, an excerpt from an overheard conversation, an excerpt from an interview with Ian McKellen, a quote from Dr. Cornel West — are reimagined as digital tiny prints: little messages and protests to share.",
+      role:        "Entire project.",
+      videoPaths:  null,
+      imagePaths:  null,
+      gifPaths:    [
+        "images/personal/EmilyReardon_Latent Curricula1_pangsofcloseness.gif",
+        "images/personal/EmilyReardon_Latent Curricula2_recoveryismorethan.gif",
+        "images/personal/EmilyReardon_Latent Curricula3_ImnotahumanIamdove.gif",
+        "images/personal/EmilyReardon_Latent Curricula4_JusticeLovePublic.gif",
+        "images/personal/EmilyReardon_Latent Curricula5_riseUp.gif",
+        "images/personal/EmilyReardon_Latent Curricula6_girlspeaklouder.gif",
+        "images/personal/EmilyReardon_Latent Curricula7_lovecoverseverything.gif",
+        "images/personal/EmilyReardon_Latent Curricula8_midddlefthestory.gif"
+      ]
+    },
+
+    /* ── COLLABORATIVE ── */
+
+    {
+      id:          "COL_000",
+      page:        "re-threaded.html",
+      tags:        ["Video", "Performance", "Sound", "Projection"],
+      medium:      "Performance installation: dance, sonic loops, live breathwork, projected colored oil",
+      shown:       "Presented at CAMRA's “Portals” Gallery Show, Annenberg School for Communication, Philadelphia, March 28, 2026",
+      credit:      "With OUR COLLECTIVE, led by OreOluwa Badaki, with Lucius Von Joo and Chris Moffett",
+      type:        "collaborative",
+      title:       "Re-threaded",
+      year:        "2026",
+      tools:       "Dance, custom-made sonic loops, live breathwork, live projected colored-oil backdrops",
+      rationale:   "Re-threaded is a performance installation that explores the most foundational embodied technology we have: breath. Taking breathing seriously as part of choreography, we delve into the ways that breathwork can help us move through the temporal and spatial landscapes integral to the stories we tell with our bodies.",
+      description: "This performance installation draws movement vocabulary from a piece for which OreOluwa Badaki was part of the choreographic team, called Threaded, which premiered at Philadelphia Fringe Fest in the Fall of 2025. Threaded used choreographic phrasing and formations that wove together shapes that have represented time in different cultures (e.g. ouroboros, sacred spiral, lemniscate, etc.). We build on this vocabulary as an invitation for performers and participants to consider the role of breath in moving through time. Performers and participants are invited to consider what shapes time takes for them, and how breath can help them move through and with these shapes. The original Threaded piece was solely a dance performance; this performance installation integrates oil projections and sonic looping (curated by Lucius Von Joo, Chris Moffett, and Emily Reardon) to visualize, physicalize, and expand the ways that breath moves through the piece and invite performers and participants to travel through time in new ways.",
+      role:        "All ambient audio production, both human sounds and synth sound. With collaborative team including Lucius Von Joo and Chris Moffett, helped to reimagine prior performance work by OreOluwa Badaki and her dance troupe. Presented March 28, 2026 at CAMRA's 'Portals' Gallery Show at the Annenberg School for Communication, Philadelphia, PA, by OUR COLLECTIVE and led by OreOluwa Badaki.",
+      videoPaths:  null,
+      imagePaths:  null,
+      imagePairPaths: [
+        "images/collective/EmilyReardon_Rethreaded_dance.jpg",
+        "images/collective/EmilyReardon_Rethreaded_video excerpt.gif",
+        "images/collective/EmilyReardon_Rethreaded_oil and booklet.jpg"
+      ],
+      audioPaths:  ["images/collective/EmilyReardon_Rethreaded_audio excerpt.m4a"],
+      gifPaths:    null
+    },
+
+    /* ── PROFESSIONAL ── */
+
+    {
+      id:          "PRO_002",
+      page:        "sesame-street-family-play.html",
+      tags:        ["Play & learning"],
+      medium:      "iPhone and Android app",
+      credit:      "For Sesame Workshop",
+      type:        "professional",
+      title:       "Sesame Street Family Play",
+      year:        "2013",
+      tools:       "iPhone & Android App for Caretakers of Young Kids",
+      rationale:   "How might we leverage parents' everyday phone use to promote off-screen family connection and address the persistent challenges of daily caregiving—such as tooth-brushing, waiting in line, or bedtime—when emotional intensity is common? In what ways might play function as an intervention to help parents reduce reliance on screens while strengthening their capacity for self-regulation and responsive caregiving?",
+      description: "Kids and grown ups play off-screen games together. Game ideas and rules are generated by the grown up on their phone, based on current setting (from in the tubby, to at the dentist, to at a restaurant, to waiting at a bus stop), number of players, and available props. Grown ups deliver the game in real time—through voice, props, and imagination—not devices. Games transform \"have to\" moments into shared joy, strengthening bonds. As grown-ups gain confidence in creating play, they rely less on the app and more on their own spontaneity.",
+      role:        "Concepting, pitching, play experience & system design, play research. Phone app built on 3rd party game engine.",
+      videoPaths:  null,
+      imagePaths:  ["images/professional/EmilyReardon_SesameStreetFamilyPlay"],
+      gifPaths:    null
+    },
+
+    {
+      id:          "PRO_001",
+      page:        "grovers-block-party.html",
+      tags:        ["Play & learning"],
+      medium:      "Letter blocks, augmented reality, computer vision",
+      credit:      "For Sesame Workshop",
+      type:        "professional",
+      title:       "Grover's Block Party",
+      year:        "2013",
+      tools:       "Analog-Digital Hybrid, Traditional Playthings, Augmented Reality",
+      rationale:   "Young children's deep, imaginative play with traditional toys, like blocks, builds critical skills, but screens often pull them away. How might we harness kids' attraction to technology to restore the rich benefits of deep play, make foundational literacy more engaging, and shift tech's role from directing play to following the child's lead to deepen engagement and foster learning?",
+      description: "Kids play with letter blocks on a playdate with Grover & 26 Letter Muppets. Grover & letter Muppets react to child-led play: noticing, commenting, questioning, singing, serving up letter videos, & more, to scaffold experimentation & deepen learning.\n\nComputer vision 'watches'. Dynamic 'mood' tagging automatically animates Grover. Augmented reality enables Grover & letter Muppets to scaffold player. Adaptive personalized patterns & scaffolds drawn from learning science grow with kids play.\n\nFormative research included iterative in-house play sessions to define a taxonomy of play patterns. Summative research included providing families with these sets as well as non-AR off the shelf block sets, pre/post focus groups, Dscout video recordings matched to behavioral data coded together.",
+      role:        "Entire project, including concepting, pitching, system design, technology innovation lead, excluding 3rd party vendor and minimal art direction.",
+      videoPaths:  null,
+      imagePaths:  ["images/professional/EmilyReardon_GroversBlockParty"],
+      gifPaths:    null
+    },
+
+    {
+      id:          "PRO_003",
+      page:        "sesame-street-playset.html",
+      tags:        ["Play & learning"],
+      medium:      "Physical playset, iPad, augmented reality, computer vision",
+      credit:      "For Sesame Workshop",
+      type:        "professional",
+      title:       "Sesame Street Playset",
+      year:        "2012",
+      tools:       "Analog-Digital Hybrid, Traditional Playthings, Augmented Reality",
+      rationale:   "How might we harness kids' attraction to screens to restore, rather than erode, the rich, research-backed benefits of deep play with traditional playthings? How might we nurture imaginative play, perspective-taking, and empathy by offering scaffolded, safe spaces to practice these skills? How might we reframe technology's role in young children's play, from directing it to following the child's lead, deepening engagement, and fostering learning?",
+      description: "Kids play with a physical Sesame Street playset. If viewed through an iPad, the arrangement of Muppets, objects, settings spark open-ended and goal directed imaginative play scaffolds to help build creativity, practice social and emotional skills, & deepen empathy.\n\nComputer vision 'watches'. Augmented reality enables Muppets to animate and talk to scaffold player's imaginative play. Adaptive personalized patterns & scaffolds drawn from learning science grow with kids play.",
+      role:        "Concepting, pitching, system design, technology innovation lead. Developed by 3rd party vendor.",
+      videoPaths:  null,
+      imagePaths:  ["images/professional/EmilyReardon_SesameStreetPlayset"],
+      gifPaths:    null
+    },
+    {
+      id: "PRO_004",
+      page:        "the-electric-company.html",
+      tags:        ["Video", "Play & learning"],
+      medium:      "Website, PBS television series, and comic book series",
+      credit:      "For Sesame Workshop",
+      type: "professional",
+      title: "The Electric Company",
+      year: "2010",
+      tools: "Cross-platform literacy ecosystem including website, TV show, and comic book series",
+      rationale: "Kids who aren't reading at grade level by fourth grade often struggle to make the critical shift from learning to read to reading to learn—a turning point strongly tied to long-term academic outcomes. We reimagined The Electric Company as a transmedia literacy experience designed to reach struggling readers ages six to nine where they already were: online and playing games.",
+      description: "Kids use the website to play digital games, watch videos, and more. The digital hub and transmedia narrative connects to and from the PBS television series and comicbook set. The unified literacy ecosystem featured artists including Common, Lin-Manuel Miranda, and Reggie Watts.",
+      role: "Responsible for: Directed the experience design— shaping narrative and play-based active learning while producing the technical specifications, logic flows, wireframes, and user flows, and leading playtesting with children across the United States. My work on the project received an Emmy Award.",
+      imagePaths: ["images/professional/EmilyReardon_TheElectricCompany"],
+      gifPaths: null
+    }
+  ];
+
+
+  /* ── Extension fallback for non-GIF images ── */
+  const EXTS = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+
+
+  function tryLoadImage(basePath, exts, imgEl, placeholder) {
+    if (exts.length === 0) {
+      imgEl.style.display = 'none';
+      if (placeholder) placeholder.style.display = 'flex';
+      return;
+    }
+    const [next, ...rest] = exts;
+    const handler = () => { imgEl.onload = null; imgEl.onerror = null; };
+    imgEl.onload = () => {
+      handler();
+      if (placeholder && placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
+      imgEl.style.display = 'block';
+    };
+    imgEl.onerror = () => { handler(); tryLoadImage(basePath, rest, imgEl, placeholder); };
+    imgEl.src = basePath + next;
+  }
+
+
+  /* ── Build a standard image wrap (extension-tried) ── */
+  function buildImageWrap(basePath, altText) {
+    const wrap = document.createElement('div');
+    wrap.className = 'project-image-wrap';
+
+
+    const placeholder = document.createElement('div');
+    placeholder.className = 'project-image-placeholder';
+    placeholder.textContent = 'image';
+
+
+    const img = document.createElement('img');
+    img.className = 'project-image';
+    img.alt = altText;
+    img.loading = 'eager';
+    img.style.display = 'none';
+
+
+    wrap.appendChild(placeholder);
+    wrap.appendChild(img);
+    tryLoadImage(basePath, [...EXTS], img, placeholder);
+    img.addEventListener('load', function() {
+      wrap.style.width = img.naturalWidth + 'px';
+      wrap.style.maxWidth = '100%';
+    });
+    return wrap;
+  }
+
+
+  /* ── Build one element of an image pair. spec is either:
+       - a string  → rendered as <img>
+       - {type:'video', sources:[...]} → silent, looping, autoplaying <video>
+       - {type:'video-player', sources:[...]} → controls <video> sized by actual aspect ratio ── */
+  function buildPairElement(spec, altText) {
+    if (spec && typeof spec === 'object' && spec.type === 'video') {
+      const video = document.createElement('video');
+      video.autoplay = true;
+      video.loop = true;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.preload = 'auto';
+      video.playsInline = true;
+      video.setAttribute('aria-label', altText);
+      spec.sources.forEach(function(src) {
+        const source = document.createElement('source');
+        source.src = src;
+        source.type = src.slice(-4) === 'webm' ? 'video/webm' : 'video/mp4';
+        video.appendChild(source);
+      });
+      return video;
+    }
+    if (spec && typeof spec === 'object' && spec.type === 'video-player') {
+      const video = document.createElement('video');
+      video.controls = true;
+      video.preload = spec.thumbnailGif ? 'none' : 'metadata';
+      video.style.cssText = 'display:block;width:100%;background:#000;' + (spec.aspectRatio ? ';aspect-ratio:' + spec.aspectRatio : '');
+      if (spec.thumbnailGif) {
+        video.poster = spec.thumbnailGif;
+      }
+      video.playsInline = true;
+      video.setAttribute('aria-label', altText);
+      spec.sources.forEach(function(src) {
+        const source = document.createElement('source');
+        source.src = src;
+        const ext = src.split('.').pop().toLowerCase();
+        source.type = ext === 'webm' ? 'video/webm' : 'video/mp4';
+        video.appendChild(source);
+      });
+      return video;
+    }
+    const img = document.createElement('img');
+    img.alt = altText;
+    img.loading = 'eager';
+    img.src = spec;
+    return img;
+  }
+
+
+  /* ── Build a row of N columns, each either a single item or a stack of items.
+       Measures every loaded image/video's real aspect ratio and computes column
+       widths so all columns render at the same height, without cropping or
+       stretching anything. No hardcoded ratios — self-adjusts to whatever the
+       actual assets are. ── */
+  function buildImagePairWrap(columns, altText) {
+    const wrap = document.createElement('div');
+    wrap.className = 'project-image-pair';
+
+
+    const colData = columns.map(function(specOrArray) {
+      const col = document.createElement('div');
+      col.className = 'project-image-pair-col';
+
+      /* vstack: { type: 'vstack', rows: [[item, item], [item]] }
+         Renders multiple horizontal rows stacked vertically within one column. */
+      if (specOrArray && typeof specOrArray === 'object' && !Array.isArray(specOrArray) && specOrArray.type === 'vstack') {
+        col.style.cssText = 'display:flex;flex-direction:column;gap:0.75rem;overflow:hidden;';
+        const vstackRows = specOrArray.rows.map(function(rowSpec) {
+          const rowItems = Array.isArray(rowSpec) ? rowSpec : [rowSpec];
+          const rowDiv = document.createElement('div');
+          rowDiv.style.cssText = 'display:flex;gap:0.75rem;flex-shrink:0;overflow:hidden;align-items:flex-start;';
+          const elements = rowItems.map(function(spec) {
+            const el = buildPairElement(spec, altText);
+            el.style.visibility = 'hidden';
+            el.style.display = 'block';
+            el.style.flexShrink = '0';
+            rowDiv.appendChild(el);
+            return el;
+          });
+          col.appendChild(rowDiv);
+          return { rowDiv: rowDiv, elements: elements };
+        });
+        wrap.appendChild(col);
+        const allEls = vstackRows.reduce(function(a, rd) { return a.concat(rd.elements); }, []);
+        return { col: col, elements: allEls, isVstack: true, vstackRows: vstackRows };
+      }
+
+      const items = Array.isArray(specOrArray) ? specOrArray : [specOrArray];
+      if (items.length > 1) col.classList.add('project-image-pair-stack');
+      const elements = items.map(function(spec) {
+        const el = buildPairElement(spec, altText);
+        el.style.visibility = 'hidden';
+        col.appendChild(el);
+        return el;
+      });
+      wrap.appendChild(col);
+      return { col: col, elements: elements };
+    });
+
+
+    function naturalRatio(el) {
+      if (el.tagName === 'VIDEO') {
+        /* Fall back to spec-provided aspect-ratio CSS if set, else 16/9; layout() re-fires on loadedmetadata */
+        if (el.videoWidth && el.videoHeight) return el.videoWidth / el.videoHeight;
+        const ar = el.style.aspectRatio;
+        if (ar) { const p = ar.split('/'); if (p.length === 2) return parseFloat(p[0]) / parseFloat(p[1]); }
+        return 16 / 9;
+      }
+      return el.naturalWidth / el.naturalHeight;
+    }
+
+
+    let revealed = false;
+    function layout() {
+      const ks = [];
+      for (let i = 0; i < colData.length; i++) {
+        if (colData[i].isVstack) {
+          /* K for a vstack: treat each row as one stacked item whose effective
+             aspect ratio is the sum of its items' aspect ratios (side-by-side). */
+          let sumInv = 0;
+          const rows = colData[i].vstackRows;
+          for (let r = 0; r < rows.length; r++) {
+            let rowAspect = 0;
+            const rowEls = rows[r].elements;
+            for (let j = 0; j < rowEls.length; j++) {
+              const ratio = naturalRatio(rowEls[j]);
+              if (!ratio) return;
+              rowAspect += ratio;
+            }
+            sumInv += 1 / rowAspect;
+          }
+          ks.push(1 / sumInv);
+        } else {
+          let sumInv = 0;
+          const els = colData[i].elements;
+          for (let j = 0; j < els.length; j++) {
+            const r = naturalRatio(els[j]);
+            if (!r) return;
+            sumInv += 1 / r;
+          }
+          ks.push(1 / sumInv);
+        }
+      }
+      const gapPx = 12;
+      const containerWidth = wrap.clientWidth || (wrap.parentElement && wrap.parentElement.clientWidth) || 0;
+      if (!containerWidth) return;
+      const availableWidth = containerWidth - gapPx * (colData.length - 1);
+      const sumK = ks.reduce(function(a, b) { return a + b; }, 0);
+      const height = availableWidth / sumK;
+      colData.forEach(function(cd, i) {
+        cd.col.style.flex = '0 0 auto';
+        const colW = height * ks[i];
+        cd.col.style.width = colW + 'px';
+        /* Explicitly size video elements — preload:none means videoWidth/height are 0
+           so the browser can't auto-size them without a known intrinsic dimension */
+        if (!cd.isVstack) {
+          cd.elements.forEach(function(el) {
+            el.style.height = height + 'px';
+            el.style.width = colW + 'px';
+          });
+        }
+
+        if (cd.isVstack) {
+          /* Distribute available column height across rows proportionally */
+          const rows = cd.vstackRows;
+          const innerGaps = gapPx * (rows.length - 1);
+          const availH = height - innerGaps;
+          const rowAspects = rows.map(function(rd) {
+            return rd.elements.reduce(function(sum, el) { return sum + naturalRatio(el); }, 0);
+          });
+          const sumInvRow = rowAspects.reduce(function(sum, ra) { return sum + 1 / ra; }, 0);
+          rows.forEach(function(rd, ri) {
+            /* Subtract the gap between items within this row so elements fill colW exactly */
+            const nItems = rd.elements.length;
+            const rowAvailW = colW - gapPx * (nItems - 1);
+            const rowH = rowAvailW / rowAspects[ri];
+            rd.rowDiv.style.height = rowH + 'px';
+            rd.elements.forEach(function(el) {
+              el.style.height = rowH + 'px';
+              el.style.width = (rowH * naturalRatio(el)) + 'px';
+            });
+          });
+        }
+      });
+      if (!revealed) {
+        revealed = true;
+        colData.forEach(function(cd) {
+          cd.elements.forEach(function(el) { el.style.visibility = 'visible'; });
+        });
+      }
+    }
+
+
+    colData.forEach(function(cd) {
+      cd.elements.forEach(function(el) {
+        ['loadedmetadata', 'loadeddata', 'canplay', 'resize', 'load'].forEach(function(evt) {
+          el.addEventListener(evt, layout);
+        });
+        if (el.tagName === 'VIDEO') {
+          if (el.readyState >= 1) layout();
+        } else if (el.complete) {
+          layout();
+        }
+      });
+    });
+
+
+    window.addEventListener('resize', layout);
+    window.addEventListener('load', layout);
+    setTimeout(layout, 500);
+    setTimeout(layout, 1500);
+
+
+    return wrap;
+  }
+
+
+  /* ── Build a video wrap ── */
+  function buildVideoWrap(src, altText, thumbnailGif) {
+    const wrap = document.createElement('div');
+    wrap.className = 'project-image-wrap';
+
+    const video = document.createElement('video');
+    video.controls = true;
+    video.preload = 'metadata';
+    video.playsInline = true;
+    video.style.cssText = 'width:100%;aspect-ratio:16/9;display:block;background:#000;cursor:pointer;';
+    video.setAttribute('aria-label', altText);
+    if (thumbnailGif) video.poster = thumbnailGif.split('/').map(function(s){ return encodeURIComponent(s); }).join('/');
+    video.src = src;
+    wrap.appendChild(video);
+
+    return wrap;
+  }
+
+
+  /* ── Build an audio wrap (custom player) ── */
+  function buildAudioWrap(src, altText) {
+    const wrap = document.createElement('div');
+    wrap.className = 'project-image-wrap';
+    wrap.style.marginTop = '0.75rem';
+
+    /* Hidden audio element */
+    const audio = document.createElement('audio');
+    audio.preload = 'metadata';
+    audio.setAttribute('aria-label', altText);
+    const source = document.createElement('source');
+    source.src = src;
+    source.type = src.slice(-3) === 'm4a' ? 'audio/mp4' : 'audio/mpeg';
+    audio.appendChild(source);
+
+    /* Custom player UI */
+    const player = document.createElement('div');
+    player.className = 'audio-player';
+
+    const btn = document.createElement('button');
+    btn.className = 'audio-play-btn';
+    btn.setAttribute('aria-label', 'Play');
+    btn.textContent = '▶';
+
+    const scrubWrap = document.createElement('div');
+    scrubWrap.className = 'audio-scrubber-wrap';
+    const scrubber = document.createElement('input');
+    scrubber.type = 'range';
+    scrubber.className = 'audio-scrubber';
+    scrubber.min = 0;
+    scrubber.max = 100;
+    scrubber.value = 0;
+    scrubber.step = 0.1;
+    scrubWrap.appendChild(scrubber);
+
+    const timeEl = document.createElement('span');
+    timeEl.className = 'audio-time';
+    timeEl.textContent = '0:00';
+
+    player.appendChild(btn);
+    player.appendChild(scrubWrap);
+    player.appendChild(timeEl);
+
+    /* Format seconds as m:ss */
+    function fmt(s) {
+      if (isNaN(s)) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    btn.addEventListener('click', function() {
+      if (audio.paused) { audio.play(); btn.textContent = '⏸'; btn.setAttribute('aria-label','Pause'); }
+      else { audio.pause(); btn.textContent = '▶'; btn.setAttribute('aria-label','Play'); }
+    });
+
+    audio.addEventListener('timeupdate', function() {
+      if (!audio.duration) return;
+      scrubber.value = (audio.currentTime / audio.duration) * 100;
+      timeEl.textContent = fmt(audio.currentTime);
+      /* Fade out over last 3 seconds */
+      const remaining = audio.duration - audio.currentTime;
+      audio.volume = remaining < 3 ? Math.max(0, remaining / 3) : 1;
+    });
+
+    audio.addEventListener('ended', function() {
+      btn.textContent = '▶'; btn.setAttribute('aria-label','Play');
+      scrubber.value = 0; timeEl.textContent = '0:00';
+    });
+
+    audio.addEventListener('loadedmetadata', function() {
+      scrubber.max = 100;
+    });
+
+    scrubber.addEventListener('input', function() {
+      if (audio.duration) audio.currentTime = (scrubber.value / 100) * audio.duration;
+    });
+
+    wrap.appendChild(audio);
+    wrap.appendChild(player);
+    return wrap;
+  }
+
+
+  /* ── Build a GIF grid ── */
+  function buildGifGrid(gifPaths, altText) {
+    const grid = document.createElement('div');
+    grid.className = 'gif-grid';
+
+
+    gifPaths.forEach(function(src) {
+      const cell = document.createElement('div');
+      cell.className = 'gif-grid-cell';
+
+
+      const ph = document.createElement('div');
+      ph.className = 'gif-grid-placeholder';
+      ph.textContent = 'loading';
+
+
+      const img = document.createElement('img');
+      img.alt = altText;
+      img.loading = 'eager';
+      img.style.display = 'none';
+      img.onload = function() {
+        img.onload = null;
+        img.onerror = null;
+        if (ph.parentNode) ph.parentNode.removeChild(ph);
+        img.style.display = 'block';
+      };
+      img.onerror = function() {
+        img.onload = null;
+        img.onerror = null;
+        img.style.display = 'none';
+        ph.textContent = 'image';
+      };
+      img.src = src;
+
+
+      cell.appendChild(ph);
+      cell.appendChild(img);
+      grid.appendChild(cell);
+    });
+
+
+    return grid;
+  }
+
+
+  /* ── Escape text for safe insertion into innerHTML ── */
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+
+  /* ── Render ── */
+  function renderProjects() {
+    const container = document.getElementById('projects-list');
+
+    /* Single-project pages (e.g. public-record.html) set data-only on <main>
+       and show just that one project, using this same layout. */
+    const onlyPage = container.dataset.only || null;
+    const list = onlyPage ? projects.filter(function(p) { return p.page === onlyPage; }) : projects;
+
+    list.forEach(function(p) {
+      const card = document.createElement('article');
+      card.className = 'project-card';
+      card.dataset.type = p.type;
+      card.dataset.id = p.id;
+      card.dataset.id = p.id;
+
+
+      /* title */
+      const title = document.createElement('h2');
+      title.className = 'project-title';
+      title.appendChild(document.createTextNode(p.title));
+      card.appendChild(title);
+
+
+      /* tags */
+      if (p.tags && p.tags.length) {
+        const tagList = document.createElement('ul');
+        tagList.className = 'project-tags';
+        tagList.setAttribute('aria-label', 'Tags');
+        p.tags.forEach(function(t) {
+          const li = document.createElement('li');
+          li.textContent = t;
+          tagList.appendChild(li);
+        });
+        card.appendChild(tagList);
+      }
+
+
+      /* Split imagePaths into main vs process */
+      const mainImagePaths = (p.imagePaths || []).filter(function(path) {
+        return path.toLowerCase().indexOf('process') === -1;
+      });
+      const processImagePaths = (p.imagePaths || []).filter(function(path) {
+        return path.toLowerCase().indexOf('process') !== -1;
+      });
+
+      /* \u2500\u2500 Lightbox item builders \u2014 collected while rendering inline media \u2500\u2500 */
+      const lbItems = [];
+
+      function collectSpec(spec) {
+        if (!spec) return;
+        if (typeof spec === 'string') {
+          lbItems.push(function() {
+            const img = document.createElement('img');
+            img.src = spec; img.alt = p.title;
+            return img;
+          });
+        } else if (spec.type === 'video' || spec.type === 'video-player') {
+          lbItems.push(function() {
+            const video = document.createElement('video');
+            video.controls = true; video.playsInline = true; video.preload = 'metadata';
+            if (spec.thumbnailGif) video.poster = spec.thumbnailGif;
+            if (spec.aspectRatio) video.style.aspectRatio = spec.aspectRatio;
+            (spec.sources || []).forEach(function(src) {
+              const s = document.createElement('source');
+              s.src = src;
+              s.type = src.split('.').pop().toLowerCase() === 'webm' ? 'video/webm' : 'video/mp4';
+              video.appendChild(s);
+            });
+            return video;
+          });
+        } else if (spec.type === 'vstack') {
+          (spec.rows || []).forEach(function(row) {
+            (Array.isArray(row) ? row : [row]).forEach(collectSpec);
+          });
+        }
+      }
+
+      /* media: images/gifs first, then videos, then audio */
+      if (p.mediaRows && p.mediaRows.length) {
+        p.mediaRows.forEach(function(row, idx) {
+          const rowEl = buildImagePairWrap(row, p.title);
+          if (idx > 0) rowEl.style.marginTop = '0.75rem';
+          card.appendChild(rowEl);
+          row.forEach(collectSpec);
+        });
+      } else if (p.gifPaths && p.gifPaths.length) {
+        card.appendChild(buildGifGrid(p.gifPaths, p.title));
+        p.gifPaths.forEach(function(src) {
+          lbItems.push(function() {
+            const img = document.createElement('img');
+            img.src = src; img.alt = p.title;
+            return img;
+          });
+        });
+      } else if ((p.imagePairPaths && p.imagePairPaths.length) || mainImagePaths.length) {
+        if (p.imagePairPaths && p.imagePairPaths.length) {
+          card.appendChild(buildImagePairWrap(p.imagePairPaths, p.title));
+          p.imagePairPaths.forEach(collectSpec);
+        }
+        mainImagePaths.forEach(function(basePath) {
+          card.appendChild(buildImageWrap(basePath, p.title));
+          lbItems.push(function() {
+            const img = document.createElement('img');
+            img.alt = p.title;
+            tryLoadImage(basePath, [...EXTS], img, null);
+            return img;
+          });
+        });
+      }
+      if (p.videoPaths && p.videoPaths.length) {
+        if (p.stillPath) {
+          p.videoPaths.forEach(function(src) {
+            card.appendChild(buildImagePairWrap(
+              [p.stillPath, { type: 'video-player', sources: [src], thumbnailGif: p.thumbnailGif || null }],
+              p.title
+            ));
+          });
+        } else {
+          p.videoPaths.forEach(function(src) {
+            card.appendChild(buildVideoWrap(src, p.title, p.thumbnailGif || null));
+          });
+        }
+        p.videoPaths.forEach(function(src) {
+          var thumb = p.thumbnailGif || null;
+          lbItems.push(function() {
+            const video = document.createElement('video');
+            video.controls = true; video.playsInline = true; video.preload = 'metadata';
+            if (thumb) video.poster = thumb;
+            const s = document.createElement('source');
+            s.src = src;
+            s.type = src.split('.').pop().toLowerCase() === 'webm' ? 'video/webm' : 'video/mp4';
+            video.appendChild(s);
+            return video;
+          });
+        });
+      }
+      if (p.audioPaths && p.audioPaths.length) {
+        p.audioPaths.forEach(function(src) {
+          card.appendChild(buildAudioWrap(src, p.title));
+          lbItems.push(function() { return buildAudioWrap(src, p.title); });
+        });
+      }
+
+      /* \u2197 view project link \u2014 below media, opens the project's own page */
+      if (p.page) {
+        const viewLink = document.createElement('a');
+        viewLink.className = 'project-view-btn';
+        viewLink.href = p.page;
+        viewLink.setAttribute('aria-label', 'View the ' + p.title + ' project page');
+        viewLink.textContent = '\u2197 view project';
+        card.appendChild(viewLink);
+      }
+
+      /* byline */
+      const byline = document.createElement('p');
+      byline.className = 'project-byline';
+      let bylineHTML = escapeHtml(p.year + ', ' + p.tools);
+      if (p.modelCardUrl) {
+        bylineHTML += ' <a href="' + escapeHtml(p.modelCardUrl) + '" target="_blank" rel="noopener">AI Model Card available here.</a>';
+      }
+      byline.innerHTML = bylineHTML;
+      card.appendChild(byline);
+
+
+      /* body copy: Rationale → Project Description → My Role */
+      const bodyWrap = document.createElement('div');
+      bodyWrap.className = 'project-body-wrap';
+
+
+      let bodyHTML =
+        '<p class="project-label">Rationale</p>' +
+        '<p class="project-body">' + p.rationale.replace(/\n/g, '<br>') + '</p>' +
+        '<p class="project-label">Project Description</p>' +
+        '<p class="project-body">' + p.description.replace(/\n/g, '<br>') + '</p>';
+
+
+      if (p.role) {
+        bodyHTML +=
+          '<p class="project-label">My Role</p>' +
+          '<p class="project-body">' + p.role + '</p>';
+      }
+
+
+      bodyWrap.innerHTML = bodyHTML;
+      card.appendChild(bodyWrap);
+
+
+      /* Process Documentation — images with "process" in filename, at the bottom */
+      if (processImagePaths.length) {
+        const processLabel = document.createElement('p');
+        processLabel.className = 'project-label';
+        processLabel.textContent = 'Process Documentation';
+        card.appendChild(processLabel);
+
+        processImagePaths.forEach(function(basePath) {
+          card.appendChild(buildImageWrap(basePath, p.title + ' process'));
+        });
+      }
+
+
+      container.appendChild(card);
+    });
+
+
+    updateFirstVisibleBorder();
+  }
+
+
+  /* ── Filter logic ── */
+  function updateFirstVisibleBorder() {
+    const cards = document.querySelectorAll('.project-card');
+    let foundFirst = false;
+    cards.forEach(function(card) {
+      card.style.borderTop = '';
+      if (!card.classList.contains('hidden') && !foundFirst) {
+        card.style.borderTop = '1px solid #000';
+        foundFirst = true;
+      }
+    });
+  }
+
+
+  function applyFilter(filter) {
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(function(card) {
+      if (filter === 'all' || card.dataset.type === filter) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    updateFirstVisibleBorder();
+  }
+
+
+  document.getElementById('filter-bar').addEventListener('click', function(e) {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    applyFilter(btn.dataset.filter);
+  });
+
+
+  renderProjects();
+
+  /* ── Single-project page: back link + previous/next links ── */
+  (function () {
+    const container = document.getElementById('projects-list');
+    const onlyPage = container.dataset.only;
+    if (!onlyPage) return;
+    document.body.classList.add('project-focus');
+    const i = projects.findIndex(function (p) { return p.page === onlyPage; });
+    if (i < 0) return;
+    const back = document.createElement('a');
+    back.className = 'project-back-link';
+    back.href = 'projects.html';
+    back.innerHTML = '&larr; All projects';
+    container.insertBefore(back, container.firstChild);
+    const prev = projects[(i - 1 + projects.length) % projects.length];
+    const next = projects[(i + 1) % projects.length];
+    const pager = document.createElement('nav');
+    pager.className = 'project-pager';
+    pager.setAttribute('aria-label', 'More projects');
+    pager.innerHTML = '<a href="' + escapeHtml(prev.page) + '">&larr; ' + escapeHtml(prev.title) + '</a>' +
+                      '<a href="' + escapeHtml(next.page) + '">' + escapeHtml(next.title) + ' &rarr;</a>';
+    container.appendChild(pager);
+  })();
+
+  /* ── Old single-project links (projects.html#ID) forward to the project's own page ── */
+  (function () {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+    const match = projects.find(function (p) { return p.id === hash; });
+    if (match && match.page) window.location.replace(match.page);
+  })();
+
+
+
+
   /* ── Dot animation ── */
   const MAX_DOTS  = 7;
   const NUM_SLOTS = 12;
@@ -881,6 +1818,68 @@
       navContainer.classList.toggle('menu-open');
     });
   }
+
+  /* ── Lightbox system ── */
+  (function() {
+    const lightbox = document.getElementById('visual-lightbox');
+    if (!lightbox) return;
+    const stage    = document.getElementById('lb-stage');
+    const nav      = document.getElementById('lb-nav');
+    const prevBtn  = document.getElementById('lb-prev');
+    const nextBtn  = document.getElementById('lb-next');
+    const counter  = document.getElementById('lb-counter');
+    const closeBtn = lightbox.querySelector('.lb-close');
+    let current = 0;
+    let items   = [];
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      stage.querySelectorAll('video, audio').forEach(function(el) { el.pause(); });
+      stage.innerHTML = '';
+      nav.classList.remove('visible');
+      items = []; current = 0;
+      document.body.style.overflow = '';
+    }
+
+    function showSlide(idx) {
+      stage.innerHTML = '';
+      current = ((idx % items.length) + items.length) % items.length;
+      var el = items[current]();
+      if (el.tagName === 'IMG') {
+        el.style.cssText = 'max-width:100%;max-height:82vh;object-fit:contain;display:block;margin:auto;';
+      } else if (el.tagName === 'VIDEO') {
+        el.style.cssText = 'max-width:100%;max-height:82vh;display:block;background:#000;margin:auto;';
+      }
+      stage.appendChild(el);
+      if (items.length > 1) {
+        nav.classList.add('visible');
+        counter.textContent = (current + 1) + ' / ' + items.length;
+      } else {
+        nav.classList.remove('visible');
+      }
+    }
+
+    window.openLightbox = function(lbItems) {
+      items = lbItems;
+      current = 0;
+      document.body.style.overflow = 'hidden';
+      lightbox.classList.add('open');
+      showSlide(0);
+    };
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    prevBtn.addEventListener('click', function() { showSlide(current - 1); });
+    nextBtn.addEventListener('click', function() { showSlide(current + 1); });
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  showSlide(current - 1);
+      if (e.key === 'ArrowRight') showSlide(current + 1);
+    });
+  })();
 </script>
 </body>
 </html>
