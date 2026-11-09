@@ -367,6 +367,7 @@
       margin: 0.45rem 0 0 0;
       text-align: left;
     }
+    .project-shown { margin-top: 0.2rem; color: #222; }
 
 
     .project-body-wrap {
@@ -689,6 +690,7 @@
       page:        "intimacy-as-infrastructure.html",
       tags:        ["Local & open-source AI", "Interactive sculpture", "Installation", "Projection"],
       medium:      "Handmade crystal and metal mobile, projection, custom small language model (AutoLume), Open Sound Control, TouchDesigner",
+      shown:       "Presented at MFA critique, Integrated Media Arts, Hunter College, City University of New York, Fall 2026",
       type:        "personal",
       title:       "Intimacy as Infrastructure",
       year:        "2025",
@@ -753,6 +755,7 @@
       page:        "public-record.html",
       tags:        ["Local & open-source AI", "Interactive sculpture", "Installation", "Civic engagement", "Open data"],
       medium:      "Handmade resin, mirror, metal, and NFC-tag mobile; custom web app; local open-weight AI (OLMo 3 7B)",
+      shown:       "Presented at MFA critique, Integrated Media Arts, Hunter College, City University of New York, Fall 2026. In development.",
       type:        "personal",
       title:       "Public Record",
       year:        "2026",
@@ -798,6 +801,7 @@
       page:        "open-perimeter.html",
       tags:        ["Sound", "Open data", "Computational typography"],
       medium:      "Audiovisual composition, 4:01.22: field recordings, sun printing, OpenStreetMap data",
+      shown:       "Screened in the Integrated Media Arts MFA program, Hunter College, City University of New York, Spring 2026",
       type:        "personal",
       title:       "Open Perimeter: Open Data Ecoacoustic Study",
       year:        "2026",
@@ -817,6 +821,7 @@
       page:        "latent-curricula.html",
       tags:        ["Computational typography"],
       medium:      "Animated digital tiny prints (in progress)",
+      shown:       "In development, 2026",
       type:        "personal",
       title:       "Latent Curricula Computational Tiny Prints",
       year:        "2026",
@@ -872,6 +877,7 @@
       page:        "sesame-street-family-play.html",
       tags:        ["Play & learning"],
       medium:      "iPhone and Android app",
+      shown:       "Released for iOS and Android, 2014",
       credit:      "For Sesame Workshop",
       type:        "professional",
       title:       "Sesame Street Family Play",
@@ -890,6 +896,7 @@
       page:        "grovers-block-party.html",
       tags:        ["Play & learning"],
       medium:      "Letter blocks, augmented reality, computer vision",
+      shown:       "Presented at CES (Consumer Electronics Show), Las Vegas, 2014. Research published in User Experience Magazine, 2016",
       credit:      "For Sesame Workshop",
       type:        "professional",
       title:       "Grover's Block Party",
@@ -908,6 +915,7 @@
       page:        "sesame-street-playset.html",
       tags:        ["Play & learning"],
       medium:      "Physical playset, iPad, augmented reality, computer vision",
+      shown:       "Presented at CES (Consumer Electronics Show), Las Vegas, 2012",
       credit:      "For Sesame Workshop",
       type:        "professional",
       title:       "Sesame Street Playset",
@@ -925,6 +933,7 @@
       page:        "the-electric-company.html",
       tags:        ["Video", "Play & learning"],
       medium:      "Website, PBS television series, and comic book series",
+      shown:       "Daytime Emmy Award, New Approaches – Daytime Children's, 2010. Research published at CSCW 2013 and IDC 2011, and in Computers in Entertainment, 2014",
       credit:      "For Sesame Workshop",
       type: "professional",
       title: "The Electric Company",
@@ -1526,6 +1535,15 @@
       }
       byline.innerHTML = bylineHTML;
       card.appendChild(byline);
+
+      /* where it was shown + collaborators */
+      [p.shown, p.credit].forEach(function(line) {
+        if (!line) return;
+        const el = document.createElement('p');
+        el.className = 'project-byline project-shown';
+        el.textContent = line;
+        card.appendChild(el);
+      });
 
 
       /* body copy: Rationale → Project Description → My Role */
