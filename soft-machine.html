@@ -199,7 +199,8 @@
       padding-left: 2rem;
       padding-right: 2rem;
       display: flex;
-      gap: 1.4rem;
+      flex-wrap: wrap;
+      gap: 0.2rem 1.4rem;
       border-bottom: 1px solid #000;
       padding-bottom: 0;
     }
@@ -507,15 +508,7 @@
       transition: color 0.18s ease, border-color 0.18s ease;
     }
     .project-tags a:hover { color: #000; border-color: #000; }
-    .tag-filter-note {
-      max-width: 900px;
-      margin: 0.9rem auto 0 auto;
-      padding: 0 2rem;
-      font-size: 0.78rem;
-      color: #555;
-    }
-    .tag-filter-note a { color: #555; margin-left: 0.6rem; }
-    .tag-filter-note a:hover { color: #000; }
+    .project-tags a.active { color: #fff; background: #000; border-color: #000; }
     .project-pager {
       display: flex;
       justify-content: space-between;
@@ -657,12 +650,10 @@
 
 
 <!-- Filter bar -->
-<div class="filter-bar" id="filter-bar">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="art">Art</button>
-  <button class="filter-btn" data-filter="Children's media">Children's media</button>
+<!-- One button per tag, built from the tags in the projects list below -->
+<div class="filter-bar" id="filter-bar" role="group" aria-label="Filter projects by tag">
+  <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
 </div>
-<p class="tag-filter-note" id="tag-filter-note" hidden></p>
 
 
 <main class="main-content" id="projects-list" data-only="soft-machine.html"></main>
@@ -888,7 +879,7 @@
     {
       id:          "PRO_002",
       page:        "sesame-street-family-play.html",
-      tags:        ["Children's media", "Play & learning"],
+      tags:        ["Interactive media", "Play & learning"],
       medium:      "iPhone and Android app",
       shown:       "Released for iOS and Android, 2014",
       credit:      "For Sesame Workshop",
@@ -907,7 +898,7 @@
     {
       id:          "PRO_001",
       page:        "grovers-block-party.html",
-      tags:        ["Children's media", "Play & learning"],
+      tags:        ["Interactive media", "Play & learning"],
       medium:      "Letter blocks, augmented reality, computer vision",
       shown:       "Presented at CES (Consumer Electronics Show), Las Vegas, 2014. Research published in User Experience Magazine, 2016",
       credit:      "For Sesame Workshop",
@@ -926,7 +917,7 @@
     {
       id:          "PRO_003",
       page:        "sesame-street-playset.html",
-      tags:        ["Children's media", "Play & learning"],
+      tags:        ["Interactive media", "Play & learning"],
       medium:      "Physical playset, iPad, augmented reality, computer vision",
       shown:       "Presented at CES (Consumer Electronics Show), Las Vegas, 2012",
       credit:      "For Sesame Workshop",
@@ -944,7 +935,7 @@
     {
       id: "PRO_004",
       page:        "the-electric-company.html",
-      tags:        ["Children's media", "Video", "Play & learning"],
+      tags:        ["Interactive media", "Video", "Play & learning"],
       medium:      "Website, PBS television series, and comic book series",
       shown:       "Daytime Emmy Award, New Approaches – Daytime Children's, 2010. Research published at CSCW 2013 and IDC 2011, and in Computers in Entertainment, 2014",
       credit:      "For Sesame Workshop",
@@ -1418,6 +1409,7 @@
           const li = document.createElement('li');
           const a = document.createElement('a');
           a.href = 'projects.html?tag=' + encodeURIComponent(t);
+          a.dataset.tag = t;
           a.textContent = t;
           a.setAttribute('aria-label', 'Show all ' + t + ' projects');
           li.appendChild(a);
@@ -1623,45 +1615,63 @@
   }
 
 
-  /* filter is "all", "art" (everything that isn't Children's media), or any tag name */
+  /* filter is "all" or any tag name */
   function cardMatches(card, filter) {
-    const tags = JSON.parse(card.dataset.tags || '[]');
     if (filter === 'all') return true;
-    if (filter === 'art') return tags.indexOf("Children's media") === -1;
-    return tags.indexOf(filter) !== -1;
+    return JSON.parse(card.dataset.tags || '[]').indexOf(filter) !== -1;
   }
 
   function applyFilter(filter) {
+    const bar = document.getElementById('filter-bar');
+    /* a tag that isn't in the list (e.g. an old link) falls back to All */
+    if (filter !== 'all' && !bar.querySelector('.filter-btn[data-filter="' + CSS.escape(filter) + '"]')) filter = 'all';
     document.querySelectorAll('.project-card').forEach(function(card) {
       card.classList.toggle('hidden', !cardMatches(card, filter));
     });
-    /* highlight the matching button; a tag with no button shows a "Showing" note */
-    let hasButton = false;
-    document.querySelectorAll('.filter-btn').forEach(function(b) {
+    bar.querySelectorAll('.filter-btn').forEach(function(b) {
       const on = b.dataset.filter === filter;
       b.classList.toggle('active', on);
-      if (on) hasButton = true;
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
-    const note = document.getElementById('tag-filter-note');
-    if (hasButton) {
-      note.hidden = true;
-    } else {
-      note.hidden = false;
-      note.textContent = 'Showing: ' + filter;
-      const clear = document.createElement('a');
-      clear.href = 'projects.html';
-      clear.textContent = 'Show all';
-      note.appendChild(clear);
-    }
+    /* the matching tag on each card is filled in black */
+    document.querySelectorAll('.project-tags a').forEach(function(a) {
+      a.classList.toggle('active', a.dataset.tag === filter);
+    });
+    history.replaceState(null, '', filter === 'all' ? 'projects.html' : 'projects.html?tag=' + encodeURIComponent(filter));
     updateFirstVisibleBorder();
   }
 
+  /* Build one filter button per tag, in the order tags first appear in the list */
+  (function buildFilterBar() {
+    const bar = document.getElementById('filter-bar');
+    const seen = [];
+    projects.forEach(function(p) {
+      (p.tags || []).forEach(function(t) { if (seen.indexOf(t) === -1) seen.push(t); });
+    });
+    seen.forEach(function(t) {
+      const b = document.createElement('button');
+      b.className = 'filter-btn';
+      b.dataset.filter = t;
+      b.setAttribute('aria-pressed', 'false');
+      b.textContent = t;
+      bar.appendChild(b);
+    });
+  })();
 
   document.getElementById('filter-bar').addEventListener('click', function(e) {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
     applyFilter(btn.dataset.filter);
-    history.replaceState(null, '', btn.dataset.filter === 'all' ? 'projects.html' : 'projects.html?tag=' + encodeURIComponent(btn.dataset.filter));
+  });
+
+  /* On the Projects page, a tag on a card filters in place instead of reloading.
+     On a single-project page the same tag is a normal link to the filtered Projects page. */
+  document.getElementById('projects-list').addEventListener('click', function(e) {
+    const a = e.target.closest('.project-tags a');
+    if (!a || document.getElementById('projects-list').dataset.only) return;
+    e.preventDefault();
+    applyFilter(a.dataset.tag);
+    document.getElementById('filter-bar').scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
 

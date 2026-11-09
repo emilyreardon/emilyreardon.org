@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Page not found | Emily Reardon</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <script>
+    /* Old CV addresses forward to the current file, so links shared before the rename still work. */
+    (function () {
+      var path = decodeURIComponent(window.location.pathname).toLowerCase();
+      var oldCV = ['/emily reardon_cv.pdf', '/emily-reardon-cv.pdf', '/emily_reardon_cv.pdf', '/cv', '/cv/', '/cv.pdf'];
+      if (oldCV.indexOf(path) !== -1) window.location.replace('/EmilyReardonCV.pdf');
+    })();
+  </script>
+  <style>
+    body { font-family: Helvetica, Arial, sans-serif; color: #000; background: #fff; max-width: 900px; margin: 4rem auto; padding: 0 2rem; }
+    a { color: #000; }
+  </style>
+</head>
+<body>
+  <p>Page not found.</p>
+  <p><a href="/">emilyreardon.org</a> &middot; <a href="/projects.html">Projects</a> &middot; <a href="/EmilyReardonCV.pdf">CV</a></p>
+</body>
+</html>
