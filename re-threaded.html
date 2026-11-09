@@ -367,7 +367,7 @@
       margin: 0.45rem 0 0 0;
       text-align: left;
     }
-    .project-shown { margin-top: 0.2rem; color: #222; }
+    .project-credit { margin-top: 0.4rem; }
 
 
     .project-body-wrap {
@@ -494,15 +494,28 @@
       margin: 0.15rem 0 0.75rem 0;
       padding: 0;
     }
-    .project-tags li {
+    .project-tags a {
+      display: inline-block;
       font-size: 0.68rem;
       letter-spacing: 0.04em;
       color: #555;
+      text-decoration: none;
       border: 1px solid #ccc;
       border-radius: 999px;
       padding: 0.1rem 0.55rem;
       line-height: 1.5;
+      transition: color 0.18s ease, border-color 0.18s ease;
     }
+    .project-tags a:hover { color: #000; border-color: #000; }
+    .tag-filter-note {
+      max-width: 900px;
+      margin: 0.9rem auto 0 auto;
+      padding: 0 2rem;
+      font-size: 0.78rem;
+      color: #555;
+    }
+    .tag-filter-note a { color: #555; margin-left: 0.6rem; }
+    .tag-filter-note a:hover { color: #000; }
     .project-pager {
       display: flex;
       justify-content: space-between;
@@ -646,10 +659,10 @@
 <!-- Filter bar -->
 <div class="filter-bar" id="filter-bar">
   <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="personal">Personal</button>
-  <button class="filter-btn" data-filter="professional">Professional</button>
-  <button class="filter-btn" data-filter="collaborative">Collaborative</button>
+  <button class="filter-btn" data-filter="art">Art</button>
+  <button class="filter-btn" data-filter="Children's media">Children's media</button>
 </div>
+<p class="tag-filter-note" id="tag-filter-note" hidden></p>
 
 
 <main class="main-content" id="projects-list" data-only="re-threaded.html"></main>
@@ -732,7 +745,7 @@
       modelCardUrl: "https://docs.google.com/document/d/1Kkdme1Zx665_YfvJIUXjdGpu186q3GayK5DI5vPW3is/edit?usp=sharing",
       rationale:   "Trust in institutions, expertise, and each other is eroding at the exact moment we need science and research most — but there is malleability in the crumble. This piece treats that as a relationship problem, not a technology problem, reclaiming AI as a possible repair for academic trust rather than the force breaking it. A single, open corpus runs entirely on a local, open model, so everything it offers traces back to a paper anyone could read themselves. It asks what research could become if it circulated rather than accumulated, if it were carried and worn rather than filed away.",
       description: "A visitor approaches an automaton and types in a question, the kind of encounter you'd expect from a fortune telling machine that stops passersby, not a search bar. It searches a custom corpus of learning science research, work a community fought to free from the paywalls and gatekeeping of academia, and generates a reply grounded in what it finds there, more provocation than closed answer. The response prints twice as small label stickers. One goes to the visitor to wear, meant to start a conversation. The other joins the automaton's running record, so each response becomes part of what the next visitor encounters.",
-      role:        "Core concept, proposal, ethical workflow and documentation, corpus collection, Ollama backend, voice character. With collaborative team including Lucius Von Joo, Chris Moffett, and OreOluwa Badaki, built automaton and parallel thermal printer mechanism. Presented at the International Society of Learning Sciences 2026 Gallery Show at the University of California Irvine, CA, June 16–19, 2026.",
+      role:        "Core concept, proposal, ethical workflow and documentation, corpus collection, Ollama backend, voice character. The collaborative team built the automaton and parallel thermal printer mechanism.",
       imagePaths:  null,
       imagePairPaths: null,
       videoPaths:  null,
@@ -786,7 +799,7 @@
       tools:       "Guided performance art. Group phone flashlights, iPhone webcam on center table tracks group light input, sends via Bluetooth to TouchDesigner, custom TouchDesigner patch handles real-time light detection and video triggering, outputs to projection. Original video is self-recorded night footage from the Maine coast, shot near amusement rides. Live voice performance by Reardon. Built in collaboration with Claude Code in Terminal.",
       rationale:   "A performance about bodies and machines, and the uneasy balance between human vitality and machine logic. Using light as indicator and medium, it constructs a space where participation is both an act of belonging and a form of control. It asks not whether we are part of the machine, but what kind of system we are becoming together.",
       description: "A group stands in a circle around a webcam on a low pedestal. The camera reads the light participants control and collect via their mobile phone flashlight. When enough light points at the lens, a video comes into focus: abstract light patterns recorded at night of amusement rides near beach in Maine. When the light drops, the video falls apart. A voice guides the group toward the center, asks for their light, and lets them decide whether to keep it raised or let it drop. The voice speaks of indicator lights, the small signals machines use to say they're working, that they read you. It speaks of machines as relationships to power, to control, of who shapes whom. It says no one here is just input. It closes by asking what kind of systems we are and want to become together.",
-      role:        "Entire project. Presented June 20, 2026 at City University of New York, Hunter College Blackbox Theater, NYC, NY.",
+      role:        "Entire project.",
       imagePairPaths: [
         "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_still.jpg",
         { type: "video-player", sources: ["images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs).mov"], thumbnailGif: "images/personal/EmilyReardon_SoftMachine(TitleAfterBurroughs)_thumb.jpg" }
@@ -858,7 +871,7 @@
       tools:       "Dance, custom-made sonic loops, live breathwork, live projected colored-oil backdrops",
       rationale:   "Re-threaded is a performance installation that explores the most foundational embodied technology we have: breath. Taking breathing seriously as part of choreography, we delve into the ways that breathwork can help us move through the temporal and spatial landscapes integral to the stories we tell with our bodies.",
       description: "This performance installation draws movement vocabulary from a piece for which OreOluwa Badaki was part of the choreographic team, called Threaded, which premiered at Philadelphia Fringe Fest in the Fall of 2025. Threaded used choreographic phrasing and formations that wove together shapes that have represented time in different cultures (e.g. ouroboros, sacred spiral, lemniscate, etc.). We build on this vocabulary as an invitation for performers and participants to consider the role of breath in moving through time. Performers and participants are invited to consider what shapes time takes for them, and how breath can help them move through and with these shapes. The original Threaded piece was solely a dance performance; this performance installation integrates oil projections and sonic looping (curated by Lucius Von Joo, Chris Moffett, and Emily Reardon) to visualize, physicalize, and expand the ways that breath moves through the piece and invite performers and participants to travel through time in new ways.",
-      role:        "All ambient audio production, both human sounds and synth sound. With collaborative team including Lucius Von Joo and Chris Moffett, helped to reimagine prior performance work by OreOluwa Badaki and her dance troupe. Presented March 28, 2026 at CAMRA's 'Portals' Gallery Show at the Annenberg School for Communication, Philadelphia, PA, by OUR COLLECTIVE and led by OreOluwa Badaki.",
+      role:        "All ambient audio production, both human sounds and synth sound, helping reimagine prior performance work by OreOluwa Badaki and her dance troupe.",
       videoPaths:  null,
       imagePaths:  null,
       imagePairPaths: [
@@ -875,7 +888,7 @@
     {
       id:          "PRO_002",
       page:        "sesame-street-family-play.html",
-      tags:        ["Play & learning"],
+      tags:        ["Children's media", "Play & learning"],
       medium:      "iPhone and Android app",
       shown:       "Released for iOS and Android, 2014",
       credit:      "For Sesame Workshop",
@@ -894,7 +907,7 @@
     {
       id:          "PRO_001",
       page:        "grovers-block-party.html",
-      tags:        ["Play & learning"],
+      tags:        ["Children's media", "Play & learning"],
       medium:      "Letter blocks, augmented reality, computer vision",
       shown:       "Presented at CES (Consumer Electronics Show), Las Vegas, 2014. Research published in User Experience Magazine, 2016",
       credit:      "For Sesame Workshop",
@@ -913,7 +926,7 @@
     {
       id:          "PRO_003",
       page:        "sesame-street-playset.html",
-      tags:        ["Play & learning"],
+      tags:        ["Children's media", "Play & learning"],
       medium:      "Physical playset, iPad, augmented reality, computer vision",
       shown:       "Presented at CES (Consumer Electronics Show), Las Vegas, 2012",
       credit:      "For Sesame Workshop",
@@ -931,7 +944,7 @@
     {
       id: "PRO_004",
       page:        "the-electric-company.html",
-      tags:        ["Video", "Play & learning"],
+      tags:        ["Children's media", "Video", "Play & learning"],
       medium:      "Website, PBS television series, and comic book series",
       shown:       "Daytime Emmy Award, New Approaches – Daytime Children's, 2010. Research published at CSCW 2013 and IDC 2011, and in Computers in Entertainment, 2014",
       credit:      "For Sesame Workshop",
@@ -941,7 +954,7 @@
       tools: "Cross-platform literacy ecosystem including website, TV show, and comic book series",
       rationale: "Kids who aren't reading at grade level by fourth grade often struggle to make the critical shift from learning to read to reading to learn—a turning point strongly tied to long-term academic outcomes. We reimagined The Electric Company as a transmedia literacy experience designed to reach struggling readers ages six to nine where they already were: online and playing games.",
       description: "Kids use the website to play digital games, watch videos, and more. The digital hub and transmedia narrative connects to and from the PBS television series and comicbook set. The unified literacy ecosystem featured artists including Common, Lin-Manuel Miranda, and Reggie Watts.",
-      role: "Responsible for: Directed the experience design— shaping narrative and play-based active learning while producing the technical specifications, logic flows, wireframes, and user flows, and leading playtesting with children across the United States. My work on the project received an Emmy Award.",
+      role: "Directed the experience design, shaping narrative and play-based active learning while producing the technical specifications, logic flows, wireframes, and user flows, and leading playtesting with children across the United States.",
       imagePaths: ["images/professional/EmilyReardon_TheElectricCompany"],
       gifPaths: null
     }
@@ -1386,7 +1399,7 @@
       card.className = 'project-card';
       card.dataset.type = p.type;
       card.dataset.id = p.id;
-      card.dataset.id = p.id;
+      card.dataset.tags = JSON.stringify(p.tags || []);
 
 
       /* title */
@@ -1403,7 +1416,11 @@
         tagList.setAttribute('aria-label', 'Tags');
         p.tags.forEach(function(t) {
           const li = document.createElement('li');
-          li.textContent = t;
+          const a = document.createElement('a');
+          a.href = 'projects.html?tag=' + encodeURIComponent(t);
+          a.textContent = t;
+          a.setAttribute('aria-label', 'Show all ' + t + ' projects');
+          li.appendChild(a);
           tagList.appendChild(li);
         });
         card.appendChild(tagList);
@@ -1536,14 +1553,6 @@
       byline.innerHTML = bylineHTML;
       card.appendChild(byline);
 
-      /* where it was shown + collaborators */
-      [p.shown, p.credit].forEach(function(line) {
-        if (!line) return;
-        const el = document.createElement('p');
-        el.className = 'project-byline project-shown';
-        el.textContent = line;
-        card.appendChild(el);
-      });
 
 
       /* body copy: Rationale → Project Description → My Role */
@@ -1551,17 +1560,27 @@
       bodyWrap.className = 'project-body-wrap';
 
 
-      let bodyHTML =
+      let bodyHTML = '';
+
+      /* where it was shown, released, or recognized: its own labeled section */
+      if (p.shown) {
+        bodyHTML +=
+          '<p class="project-label">Exhibition &amp; Recognition</p>' +
+          '<p class="project-body">' + escapeHtml(p.shown) + '</p>';
+      }
+
+      bodyHTML +=
         '<p class="project-label">Rationale</p>' +
         '<p class="project-body">' + p.rationale.replace(/\n/g, '<br>') + '</p>' +
         '<p class="project-label">Project Description</p>' +
         '<p class="project-body">' + p.description.replace(/\n/g, '<br>') + '</p>';
 
 
-      if (p.role) {
-        bodyHTML +=
-          '<p class="project-label">My Role</p>' +
-          '<p class="project-body">' + p.role + '</p>';
+      if (p.role || p.credit) {
+        bodyHTML += '<p class="project-label">My Role</p>';
+        if (p.role)   bodyHTML += '<p class="project-body">' + p.role + '</p>';
+        /* collaborators ("With ...") or organization ("For ...") */
+        if (p.credit) bodyHTML += '<p class="project-body project-credit">' + escapeHtml(p.credit) + '</p>';
       }
 
 
@@ -1604,15 +1623,36 @@
   }
 
 
+  /* filter is "all", "art" (everything that isn't Children's media), or any tag name */
+  function cardMatches(card, filter) {
+    const tags = JSON.parse(card.dataset.tags || '[]');
+    if (filter === 'all') return true;
+    if (filter === 'art') return tags.indexOf("Children's media") === -1;
+    return tags.indexOf(filter) !== -1;
+  }
+
   function applyFilter(filter) {
-    const cards = document.querySelectorAll('.project-card');
-    cards.forEach(function(card) {
-      if (filter === 'all' || card.dataset.type === filter) {
-        card.classList.remove('hidden');
-      } else {
-        card.classList.add('hidden');
-      }
+    document.querySelectorAll('.project-card').forEach(function(card) {
+      card.classList.toggle('hidden', !cardMatches(card, filter));
     });
+    /* highlight the matching button; a tag with no button shows a "Showing" note */
+    let hasButton = false;
+    document.querySelectorAll('.filter-btn').forEach(function(b) {
+      const on = b.dataset.filter === filter;
+      b.classList.toggle('active', on);
+      if (on) hasButton = true;
+    });
+    const note = document.getElementById('tag-filter-note');
+    if (hasButton) {
+      note.hidden = true;
+    } else {
+      note.hidden = false;
+      note.textContent = 'Showing: ' + filter;
+      const clear = document.createElement('a');
+      clear.href = 'projects.html';
+      clear.textContent = 'Show all';
+      note.appendChild(clear);
+    }
     updateFirstVisibleBorder();
   }
 
@@ -1620,13 +1660,19 @@
   document.getElementById('filter-bar').addEventListener('click', function(e) {
     const btn = e.target.closest('.filter-btn');
     if (!btn) return;
-    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
     applyFilter(btn.dataset.filter);
+    history.replaceState(null, '', btn.dataset.filter === 'all' ? 'projects.html' : 'projects.html?tag=' + encodeURIComponent(btn.dataset.filter));
   });
 
 
   renderProjects();
+
+  /* ── projects.html?tag=Projection opens the list already filtered ── */
+  (function () {
+    if (document.getElementById('projects-list').dataset.only) return;
+    const tag = new URLSearchParams(window.location.search).get('tag');
+    if (tag) applyFilter(tag);
+  })();
 
   /* ── Single-project page: back link + previous/next links ── */
   (function () {
